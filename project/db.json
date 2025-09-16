@@ -1,0 +1,10 @@
+{
+  "posts": [
+    { "id": 1, "title": "Hello World", "author": "Shahil" },
+    { "id": 2, "title": "React Basics", "author": "VK" }
+  ],
+  "comments": [
+    { "id": 1, "body": "Nice post!", "postId": 1 }
+  ],
+  "profile": { "name": "Shahil" }
+}
