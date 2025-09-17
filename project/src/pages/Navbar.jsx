@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -11,11 +11,21 @@ const sec= [
     },
     {
         id:2,
-        name: "About",
-        link: "/about"
+        name: "Product",
+        link: "/product"
+    },
+    {
+       id:3,
+       name: "About",
+       link: "/about"
     }
 ]
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handle = ()=>{
+    navigate("/login")
+  }
     
 
   return (
@@ -29,7 +39,7 @@ function Navbar() {
             {sec.map((data, index)=>(
                 <li key={index}>
                     <a href= {data.link}
-                    className='inline-block px-4 font-semibold text-gray-500 hover:text-black  duration-200'> {data.name} </a>
+                    className='inline-block px-4 font-semibold text-black hover:text-red-500  duration-200'> {data.name} </a>
                 </li>
 
             ))}
@@ -38,11 +48,11 @@ function Navbar() {
         </div>
     
       
-      <div className="space-x-6">
+      <div className="space-x-6 flex items-end">
         {/* Search bar */}
 
             <input type="text"
-            placeholder='Search'
+            placeholder='Search Products'
             className='px-4 py-2 border rounded-full w-50 focus:outline-none focus:ring-2 focus:ring-red-300' />
 
          
@@ -53,12 +63,18 @@ function Navbar() {
         {/* <Link to="/" className="hover:text-red-500">
           Home
         </Link> */}
-        <Link to="/login" className=" text-gray-500 hover:text-red-500">
+        {/* <Link to="/login" className=" text-gray-500 hover:text-red-500">
           Login
         </Link>
         <Link to="/register" className=" text-gray-500 hover:text-red-500">
           Register
-        </Link>
+        </Link> */}
+        <img className='w-7' src="/assets/love1.svg" alt="favourite" />
+
+        <img className='w-7' src="/assets/cart.svg" alt="Add to Cart" />
+
+         <img onClick={handle}  className='w-8 cursor-pointer' src="/assets/login.svg" alt="call" />
+
       </div>
     </nav>
   );
