@@ -5,25 +5,35 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const slides = [
   {
-    title: 'Beats',
-    subtitle: 'Studio Wireless in Khaki',
+    title: 'Apple Airpods Max',
+    subtitle: 'Wireless Over-Ear Headphones',
     price: '£499.99',
     image: '/assets/air7.png',
+    first: 'Pro-Level Active Noise Cancellation',
+    second: 'USB-C Charging',
+    third: 'Transparency mode lets you comfortably hear and interact with the world around you.',
   },
   {
-    title: 'AirPods Pro',
-    subtitle: 'Active Noise Cancellation',
+    title: 'Canon EOS R5 Mark ',
+    subtitle: 'Mirrorless Camera',
     price: '£249.99',
     image: 'https://www.jdinstitute.edu.in/media/2021/06/National-Camera-Day-Various-types-of-cameras-for-photography-2.jpg',
+    first: 'Up to 30 fps continuous shooting with AF/AE tracking',
+    second: 'Eye Control AF + New Vehicle Priority AF',
+    third: '6K RAW recording + 4K movie with 6K oversampling',
   },
   {
-    title: 'Bluetooth Speaker',
-    subtitle: 'Portable Powerful Sound',
+    title: 'Titan Heritage Premium Smartwatch ',
+    subtitle: 'Diamonds and Black Dial Analog Watch',
     price: '£59.99',
-    image: 'https://inspireonline.in/cdn/shop/files/Apple_Watch_Ultra_2_LTE_49mm_Titanium_Orange_Ocean_Band_PDP_Image_Avail_Position-1__en-IN_c9f55646-b834-40f1-9357-2e60613e80a7.jpg?v=1698876668&width=1445',
+    image: 'https://www.titan.co.in/dw/image/v2/BKDD_PRD/on/demandware.static/-/Sites-titan-master-catalog/default/dwdbbe49f7/images/Titan/Catalog/90207KM01_1.jpg?sw=600&sh=600',
+    first: 'BT Calling, Advanced Chipset',
+    second: 'Glass : Toughened Glass',
+    third: 'alarm, stopwatch, timer, weather display, and adjustable sound and vibration settings',
   },
 ];
 
@@ -55,15 +65,15 @@ const Hero = () => {
                 <h2 className="text-xl text-gray-700">{slide.subtitle}</h2>
 
                 <ul className="list-disc list-inside text-gray-600 space-y-2">
-                  <li>Up to 12 hours of battery life for all-day listening</li>
-                  <li>Block out the real world with dual-mode Adaptive Noise Cancelling</li>
-                  <li>No matter where you escape to, stay wireless with Bluetooth® technology</li>
+                  <li>{slide.first}</li>
+                  <li>{slide.second}</li>
+                  <li>{slide.third}</li>
                 </ul>
 
                 <div className="flex items-center space-x-6">
                   <span className="text-3xl font-semibold text-gray-800">{slide.price}</span>
                   <button className="bg-yellow-600 text-white px-6 py-2 rounded hover:bg-yellow-500">
-                    Buy
+                  <Link to ="/product">Buy</Link>  
                   </button>
                 </div>
               </div>
@@ -81,8 +91,11 @@ const Hero = () => {
           </div>
         ))}
       </div>
-
     </div>
+
+
+
+
   );
 };
 

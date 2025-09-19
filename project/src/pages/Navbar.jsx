@@ -29,7 +29,7 @@ function Navbar() {
     
 
   return (
-    <nav className="w-full bg-white shadow p-4 flex justify-between items-center">
+    <nav className="w-full bg-white shadow p-4 flex justify-between items-center fixed top-0">
 
         {/* Nav left-section */}
         <div className='flex items-center gap-4'>
