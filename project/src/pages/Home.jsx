@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Product from './Product';
 import Hero from './Hero';
+import FeaturesSection from './FeaturesSection';
+import TopProducts from './TopProducts';
+import Footer from '../components/Footer';
 
 function Home() {
   return (
@@ -26,10 +29,17 @@ function Home() {
 </Link> */}
 
 
-<div className="relative w-full h-[80vh] overflow-hidden bg-center bg-white bg-no-repeat transition-all duration-1100 ease-in-out"
+{/* <div className="relative w-full h-[80vh] overflow-hidden bg-center bg-white bg-no-repeat transition-all duration-1100 ease-in-out"
  style={{backgroundImage: `url('/assets/outwatch.jpg')`}} >
 
-</div>
+</div> */}
+
+      <FeaturesSection />
+
+      <TopProducts />
+
+
+      <Footer />
 
 
 
