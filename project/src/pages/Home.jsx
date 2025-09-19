@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 import Product from './Product';
 import Hero from './Hero';
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 function Register() {
   const [name, setName] = useState('');
@@ -7,9 +8,12 @@ function Register() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const {signup}=useContext(AuthContext)
+
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('Registering:', { name, email, password });
+    signup({name,email,password})
     // Simulate successful registration
     navigate('/login');
   };

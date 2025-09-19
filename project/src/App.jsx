@@ -5,17 +5,32 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Product from './pages/Product';
+import AuthProvider from './context/AuthContext';
+import {Toaster} from 'react-hot-toast'
+import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
+import Profile from './pages/Profile';
+import Payment from './pages/Payment';
+
+
 
 function App() {
   return (
     <BrowserRouter>
+    <Toaster position="top-right" />
+    <AuthProvider>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register/>} />
       <Route path='/product' element={<Product />} />
       <Route path="*" element={<Navigate to="/" />} />
+      <Route path='/wishlist' element={<Wishlist />} />
+      <Route path='/cart' element={<Cart />} />
+      <Route path='/profile' element={<Profile />} />
+      <Route path="/payment" element={<Payment />} />
     </Routes>
+    </AuthProvider>
     </BrowserRouter>
   );
 }

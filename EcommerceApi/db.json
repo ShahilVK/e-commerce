@@ -1,0 +1,254 @@
+{
+  "users": [
+    {
+      "id": "3f25",
+      "name": "rizwan vk",
+      "email": "riswan@gamil.com",
+      "password": "12341234",
+      "role": "user",
+      "isAuthenticated": true,
+      "cart": [],
+      "wishlist": [],
+      "shippingAddress": [],
+      "orders": []
+    },
+    {
+      "id": "6538",
+      "name": "Shahil VK",
+      "email": "shahilvk99@gmail.com",
+      "password": "12344321",
+      "role": "user",
+      "isAuthenticated": true,
+      "cart": [],
+      "wishlist": [],
+      "shippingAddress": [],
+      "orders": []
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Beats Studio Wireless",
+      "price": "£499.99",
+      "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
+      "category": "Headphones"
+    },
+    {
+      "id": "2",
+      "name": "Canon 5D Mark",
+      "price": "£249.99",
+      "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
+      "category": "Camera"
+    },
+    {
+      "id": "3",
+      "name": "Wireless Earbuds",
+      "price": "£89.99",
+      "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
+      "category": "Earbuds"
+    },
+    {
+      "id": "4",
+      "name": "Smart Watch T800 Ultra",
+      "price": "£59.99",
+      "image": "https://i.pinimg.com/1200x/e6/33/03/e63303eceaae9db904888540a958e734.jpg",
+      "category": "Watches"
+    },
+    {
+      "id": "5",
+      "name": "Xmenha EarBuds",
+      "price": "£199.99",
+      "image": "https://i.pinimg.com/736x/41/24/4e/41244e9d4dbdc0ecb3020fa073b6a202.jpg",
+      "category": "Earbuds"
+    },
+    {
+      "id": "6",
+      "name": "CFIAI Power Bank",
+      "price": "£129.99",
+      "image": "https://i.pinimg.com/736x/ad/37/e4/ad37e43d5abc667c2688b1492eb1e1f4.jpg",
+      "category": "Power Bank"
+    },
+    {
+      "id": "7",
+      "name": "DSLR Camera",
+      "price": "£149.99",
+      "image": "https://i.pinimg.com/1200x/79/bb/79/79bb79c104ea9e2fee05f37cc3e7efd5.jpg",
+      "category": "Camera"
+    },
+    {
+      "id": "8",
+      "name": "Bose QuietComfort Ultra",
+      "price": "£99.99",
+      "image": "https://assets.mydeal.com.au/47684/airpods-max-usb-c-starlight-12787455_4.jpg?v=638657447625213530&im=Resize,width=600,height=600,aspect=fit,type=downsize;Crop,rect=(0,0,600,600),gravity=Center,allowExpansion",
+      "category": "Headphones"
+    },
+    {
+      "id": "9",
+      "name": "JBL Bluetooth Speaker",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/1f/cc/65/1fcc65c7424954cc30bcb56394ea96ac.jpg",
+      "category": "Speakers"
+    },
+    {
+      "id": "10",
+      "name": "Boat Airdopes 161",
+      "price": "£99.99",
+      "image": "https://www.boat-lifestyle.com/cdn/shop/files/ACCG6DS7WDJHGWSH_0.png?v=1727669669",
+      "category": "Earbuds"
+    },
+    {
+      "id": "11",
+      "name": "Apple Watch",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/04/51/eb/0451eb16cd23eaacae98515ad3ad865d.jpg",
+      "category": "Watches"
+    },
+    {
+      "id": "12",
+      "name": "Airpodes Max",
+      "price": "£99.99",
+      "image": "https://cdn.superfon.az/i/p/500/110437-8a0b8f2b4a477fc055815151543d4a70.png",
+      "category": "Headphones"
+    },
+    {
+      "id": "13",
+      "name": "Cubitt Aura SmartWatch",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/07/68/81/07688151ba3a59ed49741c6a7a781c59.jpg",
+      "category": "Watches"
+    },
+    {
+      "id": "14",
+      "name": "Canon EOS",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/1200x/c4/93/2b/c4932b02218c7dffc95de66aa3e0c33d.jpg",
+      "category": "Camera"
+    },
+    {
+      "id": "15",
+      "name": "Charmast Power Bank",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/1200x/80/fb/d3/80fbd35d3c9d1d6bafb280c992bba4d9.jpg",
+      "category": "Power Bank"
+    },
+    {
+      "id": "16",
+      "name": "Flip 5 Speaker",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/fc/86/c9/fc86c9e9f0936eb3cb3240d9976c833a.jpg",
+      "category": "Speakers"
+    },
+    {
+      "id": "17",
+      "name": "Boat Nirvana Ion",
+      "price": "£99.99",
+      "image": "https://www.bbassets.com/media/uploads/p/l/40327606_1-boat-airdopes-flex-454-anc-smart-features-anc-60-hrs-playback-low-latency-quad-mics-multi-point-connectivity-asap-charge-adaptive-eq-gunmetal-black.jpg",
+      "category": "Earbuds"
+    },
+    {
+      "id": "18",
+      "name": "JBL Tune 510BT",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/ae/79/08/ae79083e5ae4dacaedfbc804fadd75c4.jpg",
+      "category": "Headphones"
+    },
+    {
+      "id": "19",
+      "name": "IWO 8 Smart Watch",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/8a/a4/d3/8aa4d324f869d0f8635e4beacb2080d8.jpg",
+      "category": "Watches"
+    },
+    {
+      "id": "20",
+      "name": "Apple Watch Series 3",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/76/cf/9d/76cf9d9ae4ce74525898274969220575.jpg",
+      "category": "Watches"
+    },
+    {
+      "id": "21",
+      "name": "Romos Power Bank",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/67/07/ea/6707ea6434f134dd444c8da7d0a6efed.jpg",
+      "category": "Power Bank"
+    },
+    {
+      "id": "22",
+      "name": "Leaf Buds",
+      "price": "£99.99",
+      "image": "https://www.boat-lifestyle.com/cdn/shop/files/Scene_05_Brown_800x.png?v=1717817077",
+      "category": "Earbuds"
+    },
+    {
+      "id": "23",
+      "name": "Sony Speaker",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/3c/4d/6b/3c4d6bac9ea7b925b0f075e33257cf61.jpg",
+      "category": "Speakers"
+    },
+    {
+      "id": "24",
+      "name": "BassMax 500",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/e2/e5/71/e2e571403b7b79e15cc691ebea1d4e03.jpg",
+      "category": "Headphones"
+    },
+    {
+      "id": "25",
+      "name": "DT8 Ultra Smart Watch",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/b5/66/86/b566868519c01752264d0a5412352869.jpg",
+      "category": "Watches"
+    },
+    {
+      "id": "26",
+      "name": "Nikon Z-7",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/fc/62/43/fc624308739e1249dd021ad43e407560.jpg",
+      "category": "Camera"
+    },
+    {
+      "id": "27",
+      "name": "Jinisha EarBuds",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/474x/de/9f/b7/de9fb7f59c064f6817f2289784a317f6.jpg",
+      "category": "Earbuds"
+    },
+    {
+      "id": "28",
+      "name": "SoundCore Speaker",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/cd/f2/6a/cdf26a7f84b5465a0e029df106eebc4f.jpg",
+      "category": "Speakers"
+    },
+    {
+      "id": "29",
+      "name": "Boat Rockerz 551",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/68/0b/b4/680bb42752ad9136262a7a7b8cd487fc.jpg",
+      "category": "Headphones"
+    },
+    {
+      "id": "30",
+      "name": "Caixa Speaker",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/1200x/45/85/86/4585868bc1d6d606a787fcef511bd431.jpg",
+      "category": "Speakers"
+    },
+    {
+      "id": "31",
+      "name": "Nova '1.48'",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/9a/a5/24/9aa524de3ce904fc803e540599a6bfca.jpg",
+      "category": "Watches"
+    },
+    {
+      "id": "32",
+      "name": "Magsafe Power Bank",
+      "price": "£99.99",
+      "image": "https://i.pinimg.com/736x/48/3f/71/483f715bfe31c64f22a4d29d41b96af3.jpg",
+      "category": "Power Bank"
+    }
+  ]
+}

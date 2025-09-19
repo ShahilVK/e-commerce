@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const {login}=useContext(AuthContext)
+
   const handleLogin = (e) => {
     e.preventDefault();
     console.log('Logging in:', { email, password });
-    // Simulate successful login
-    navigate('/');
+    login(email,password)
   };
 
   return (
