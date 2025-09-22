@@ -11,6 +11,8 @@ import ProductsWithFilter from './ProductsWithFilter';
 import HomeBanner from './HomeBanner';
 
 function Home() {
+
+  
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center pt-10">
 
