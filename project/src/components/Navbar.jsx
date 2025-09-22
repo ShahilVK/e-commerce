@@ -57,7 +57,7 @@ function Navbar() {
           onClick={() => navigate("/")}
           className="text-2xl font-bold text-red-500 sm:text-3xl cursor-pointer hover:scale-105 duration-200"
         >
-          ESHOP
+          TekTrov
         </h1>
 
         {/* Desktop Links */}

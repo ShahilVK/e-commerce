@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Brand Info */}
         <div>
-          <h2 className="text-2xl font-bold text-white mb-3">e-Shop</h2>
+          <h2 className="text-2xl font-bold text-white mb-3">TekTrov</h2>
           <p className="text-gray-400">
             Your one-stop shop for all your needs. Shop with us and experience
             the best online shopping experience.
@@ -68,7 +68,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-500 text-sm">
-        <p>© 2025 e-Shop. All rights reserved.</p>
+        <p>© 2025 TekTrov. All rights reserved.</p>
         <div className="mt-2 flex justify-center space-x-4">
           <a href="#" className="hover:text-white">
             Privacy Policy
