@@ -9,9 +9,9 @@ import { AuthContext } from "../context/AuthContext";
 
 const sec = [
   { id: 1, name: "Home", link: "/" },
-  { id: 2, name: "Product", link: "/product" },
+  { id: 2, name: "Shop", link: "/product" },
   { id: 3, name: "About", link: "/about" },
-  { id: 4, name: "Contact", link: "/contact" },
+  { id: 4, name: "Contact", link: "/footer" },
 ];
 
 function Navbar() {

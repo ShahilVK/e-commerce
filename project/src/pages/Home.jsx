@@ -7,6 +7,7 @@ import Hero from './Hero';
 import FeaturesSection from './FeaturesSection';
 import TopProducts from './TopProducts';
 import Footer from '../components/Footer';
+import ProductsWithFilter from './ProductsWithFilter';
 
 function Home() {
   return (
@@ -22,21 +23,13 @@ function Home() {
 
 
 
-
-{/* 
-    <Link to="/product" className="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600">
-  Shop Now
-</Link> */}
-
-
-{/* <div className="relative w-full h-[80vh] overflow-hidden bg-center bg-white bg-no-repeat transition-all duration-1100 ease-in-out"
- style={{backgroundImage: `url('/assets/outwatch.jpg')`}} >
-
-</div> */}
-
       <FeaturesSection />
 
       <TopProducts />
+
+
+
+      <ProductsWithFilter />
 
 
       <Footer />

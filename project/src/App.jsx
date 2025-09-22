@@ -11,6 +11,7 @@ import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
 import Profile from './pages/Profile';
 import Payment from './pages/Payment';
+import Footer from './components/Footer';
 
 
 
@@ -29,6 +30,7 @@ function App() {
       <Route path='/cart' element={<Cart />} />
       <Route path='/profile' element={<Profile />} />
       <Route path="/payment" element={<Payment />} />
+      <Route path='/footer' element={<Footer />} />
     </Routes>
     </AuthProvider>
     </BrowserRouter>
