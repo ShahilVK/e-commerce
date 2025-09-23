@@ -1,7 +1,7 @@
 
 
 
-
+// ProductDetail.jsx
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -21,17 +21,13 @@ function ProductDetail({ product, onBack }) {
     const existingItem = cart.find((item) => item.id === product.id);
 
     if (existingItem) {
-      existingItem.quantity += count; // Update quantity
+      existingItem.quantity += count;
     } else {
       cart.push({ ...product, quantity: count });
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Notify Navbar immediately
     window.dispatchEvent(new Event("cartUpdated"));
-
-    // Show toast notification
     toast.success(`${product.name} added to cart!`);
   };
 
@@ -40,17 +36,18 @@ function ProductDetail({ product, onBack }) {
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
     const exists = wishlist.find((item) => item.id === product.id);
 
-    let updatedWishlist;
-    if (exists) {
-      updatedWishlist = wishlist.filter((item) => item.id !== product.id);
-    } else {
-      updatedWishlist = [...wishlist, product];
-    }
+    const updatedWishlist = exists
+      ? wishlist.filter((item) => item.id !== product.id)
+      : [...wishlist, product];
 
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    toast.success(
+      exists
+        ? `${product.name} removed from wishlist`
+        : `${product.name} added to wishlist`
+    );
   };
 
-  // Add to Cart button
   const handleAddToCart = () => {
     if (!user || !user.isAuthenticated) {
       navigate("/login");
@@ -59,7 +56,6 @@ function ProductDetail({ product, onBack }) {
     updateCart();
   };
 
-  // Buy Now button
   const handleBuyNow = () => {
     if (!user || !user.isAuthenticated) {
       navigate("/login");
@@ -73,9 +69,8 @@ function ProductDetail({ product, onBack }) {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto">
+    <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto mt-8">
       <Toaster position="top-right" />
-
       <button
         onClick={onBack}
         className="mb-4 text-red-500 hover:underline font-semibold"
@@ -96,17 +91,14 @@ function ProductDetail({ product, onBack }) {
         {/* Details */}
         <div className="flex-1 space-y-4">
           <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
-
-          {/* ✅ Small Description */}
           <p className="text-gray-500 text-sm italic">
-            {product.smallDescription || "This is a premium quality product designed for your needs."}
+            {product.smallDescription ||
+              "This is a premium quality product designed for your needs."}
           </p>
-
-          {/* Full Description */}
           <p className="text-gray-600 text-lg">{product.description}</p>
 
           {/* Quantity */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mt-2">
             <button
               onClick={() => setCount((prev) => Math.max(1, prev - 1))}
               className="bg-gray-300 px-4 py-2 rounded text-lg"
@@ -122,7 +114,7 @@ function ProductDetail({ product, onBack }) {
             </button>
           </div>
 
-          <p className="text-2xl font-bold text-yellow-600">
+          <p className="text-2xl font-bold text-yellow-600 mt-2">
             Total: ₹{totalPrice}
           </p>
 

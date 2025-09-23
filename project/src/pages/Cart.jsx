@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -92,7 +94,10 @@ function Cart() {
 
           {/* Checkout Button */}
           <div className="flex justify-end mt-6">
-            <button className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-500 transition">
+            <button
+              onClick={() => navigate("/payment")}
+              className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-500 transition"
+            >
               Proceed to Checkout
             </button>
           </div>
