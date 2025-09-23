@@ -37,11 +37,11 @@ const HomeBannerWithBg = () => {
 
         {/* Right side - Image */}
         <div className="md:w-1/2 flex justify-center">
-          <img
+          {/* <img
             src="../assets/banner-product.png"
             alt="Tech Accessories"
             className="w-3/4 sm:w-2/3 md:w-full max-w-lg rounded-xl shadow-2xl hover:scale-105 transition-transform duration-500"
-          />
+          /> */}
         </div>
       </div>
     </div>

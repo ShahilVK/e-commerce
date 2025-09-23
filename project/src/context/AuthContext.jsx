@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // ✅ Restore user on page refresh
+  //  Restore user on page refresh
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
