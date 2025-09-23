@@ -1,5 +1,11 @@
 
 
+
+
+
+
+
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -30,6 +36,12 @@ function Cart() {
       0
     )
     .toFixed(2);
+
+  const handleCheckout = () => {
+    // Clear Buy Now to prevent duplicates
+    localStorage.removeItem("buyNowItem");
+    navigate("/payment");
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-6 mt-20">
@@ -63,13 +75,13 @@ function Cart() {
               <div className="flex-1 ml-4">
                 <h2 className="text-lg font-semibold">{item.name}</h2>
                 <p className="text-gray-600">
-                  Price: £{item.price} × {item.quantity || 1}
+                  Price: ₹{item.price} × {item.quantity || 1}
                 </p>
               </div>
 
               {/* Total */}
               <p className="text-xl font-bold text-yellow-600">
-                £
+                ₹
                 {(
                   parseFloat(item.price.replace(/[^\d.]/g, "")) *
                   (item.quantity || 1)
@@ -89,13 +101,13 @@ function Cart() {
           {/* Grand Total */}
           <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg mt-6">
             <h2 className="text-xl font-bold">Grand Total:</h2>
-            <p className="text-2xl font-bold text-yellow-600">£{grandTotal}</p>
+            <p className="text-2xl font-bold text-yellow-600">₹{grandTotal}</p>
           </div>
 
           {/* Checkout Button */}
           <div className="flex justify-end mt-6">
             <button
-              onClick={() => navigate("/payment")}
+              onClick={handleCheckout}
               className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-500 transition"
             >
               Proceed to Checkout

@@ -1,7 +1,5 @@
 
 
-
-// ProductDetail.jsx
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -63,7 +61,17 @@ function ProductDetail({ product, onBack }) {
     }
 
     const buyNowItem = { ...product, quantity: count, totalPrice };
-    localStorage.setItem("buyNowItem", JSON.stringify(buyNowItem));
+
+    // Merge Buy Now with cart if needed
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existsInCart = cart.find((item) => item.id === buyNowItem.id);
+    if (existsInCart) {
+      existsInCart.quantity += buyNowItem.quantity;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.removeItem("buyNowItem");
+    } else {
+      localStorage.setItem("buyNowItem", JSON.stringify(buyNowItem));
+    }
 
     navigate("/payment");
   };
