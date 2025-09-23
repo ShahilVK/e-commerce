@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -56,7 +57,6 @@ function ProductDetail({ product, onBack }) {
       return;
     }
     updateCart();
-    // Stay on the same page
   };
 
   // Buy Now button
@@ -96,6 +96,13 @@ function ProductDetail({ product, onBack }) {
         {/* Details */}
         <div className="flex-1 space-y-4">
           <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
+
+          {/* ✅ Small Description */}
+          <p className="text-gray-500 text-sm italic">
+            {product.smallDescription || "This is a premium quality product designed for your needs."}
+          </p>
+
+          {/* Full Description */}
           <p className="text-gray-600 text-lg">{product.description}</p>
 
           {/* Quantity */}

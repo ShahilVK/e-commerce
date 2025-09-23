@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer"
 
 function Profile() {
   const { user } = useContext(AuthContext);
@@ -15,7 +17,12 @@ function Profile() {
   }
 
   return (
+
+
     <div className="max-w-3xl mx-auto mt-20 p-6 bg-white shadow-md rounded-lg">
+
+      <Navbar />
+      
       <h1 className="text-2xl font-bold text-gray-800 mb-6">User Profile</h1>
 
       <div className="space-y-4">
@@ -41,7 +48,14 @@ function Profile() {
           Edit Profile
         </button>
       </div>
+
+
+      
     </div>
+    
+
+    
+    
   );
 }
 

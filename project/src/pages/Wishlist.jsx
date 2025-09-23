@@ -3,6 +3,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { useWishlist } from "../context/WishlistContext";
+import Footer from "../components/Footer";
 
 function Wishlist() {
   const { wishlist, removeFromWishlist } = useWishlist();
@@ -49,6 +50,7 @@ function Wishlist() {
           </div>
         )}
       </div>
+      <Footer />
     </section>
   );
 }

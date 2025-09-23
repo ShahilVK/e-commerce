@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -97,6 +98,8 @@ function Cart() {
           </div>
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }

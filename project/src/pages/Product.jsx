@@ -1,4 +1,7 @@
 
+
+
+
 import React, { useEffect, useState } from "react";
 import api from "../Api/Axios_Instance";
 import ProductDetail from "../components/ProductDetail";
@@ -6,6 +9,7 @@ import Navbar from "../components/Navbar";
 import { useWishlist } from "../context/WishlistContext";
 import { Heart } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function Product() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +21,7 @@ function Product() {
   const { wishlist, toggleWishlist } = useWishlist();
   const location = useLocation();
 
-  // ✅ Read category from URL
+  // ✅ Get category from URL if exists
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const categoryFromURL = queryParams.get("category");
@@ -26,7 +30,7 @@ function Product() {
     }
   }, [location.search]);
 
-  // ✅ Fetch products
+  // ✅ Fetch products from API
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -48,7 +52,7 @@ function Product() {
     "Power Bank",
   ];
 
-  // ✅ Filter products dynamically
+  // ✅ Filter products by search + category
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
       selectedCategory === "All" || product.category === selectedCategory;
@@ -59,7 +63,7 @@ function Product() {
   });
 
   return (
-    <section className="bg-gray-200 py-20 min-h-screen">
+    <section className="bg-gray-200 py-20 min-h-screen ">
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4">
@@ -67,44 +71,46 @@ function Product() {
           Shop Our Best Products
         </h1>
 
-        {/* 🔎 Search + Categories */}
-        <div className="flex flex-col gap-6 mb-12">
-          {/* Search Bar */}
-          <div className="relative w-full sm:w-1/2 mx-auto">
-            <input
-              type="text"
-              placeholder="Search products..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm 
-                focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 
-                transition placeholder-gray-400"
-            />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-              🔍
-            </span>
-          </div>
+        {/* ✅ Show Search + Category only if not inside ProductDetail */}
+        {!selectedProduct && (
+          <div className="flex flex-col gap-6 mb-12">
+            {/* Search Bar */}
+            <div className="relative w-full sm:w-1/2 mx-auto">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm 
+                  focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400 
+                  transition placeholder-gray-400"
+              />
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                🔍
+              </span>
+            </div>
 
-          {/* Category Buttons */}
-          <div className="flex gap-3 overflow-x-auto pb-2 sm:justify-center scrollbar-hide">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2 rounded-full font-medium whitespace-nowrap transition 
-                  ${
-                    selectedCategory === cat
-                      ? "bg-red-500 text-white shadow-md"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {/* Category Buttons */}
+            <div className="flex gap-3 overflow-x-auto pb-2 sm:justify-center scrollbar-hide">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-5 py-2 rounded-full font-medium whitespace-nowrap transition 
+                    ${
+                      selectedCategory === cat
+                        ? "bg-red-500 text-white shadow-md"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* 🛒 Product Grid */}
+        {/* 🛒 Product Grid OR Product Detail */}
         {!selectedProduct ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {filteredProducts.length > 0 ? (
@@ -169,7 +175,11 @@ function Product() {
             onBack={() => setSelectedProduct(null)}
           />
         )}
+        
       </div>
+<Footer />
+
+
     </section>
   );
 }
