@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -45,6 +46,7 @@ function Cart() {
 
   return (
     <div className="max-w-5xl mx-auto p-6 mt-20">
+      <Navbar />
       <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
 
       {cartItems.length === 0 ? (
