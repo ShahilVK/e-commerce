@@ -13,6 +13,9 @@ import Profile from './pages/Profile';
 import Payment from './pages/Payment';
 import Footer from './components/Footer';
 import OrderSuccess from './pages/OrderSuccess';
+import About from './pages/About';
+import Contact from './pages/Contact';
+
 
 
 
@@ -33,6 +36,9 @@ function App() {
       <Route path="/payment" element={<Payment />} />
       <Route path='/footer' element={<Footer />} />
       <Route path='/ordersuccess' element={<OrderSuccess />} />
+      <Route path='/about' element={<About />} />
+      <Route path='/contact' element={<Contact />} />
+
     </Routes>
     </AuthProvider>
     </BrowserRouter>
