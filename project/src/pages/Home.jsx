@@ -102,7 +102,7 @@ function Home() {
         viewport={{ once: true }}
         className="w-full"
       >
-        <Hero />
+        {/* <Hero /> */}
       </motion.div>
 
       {/* Features Section */}
@@ -113,7 +113,8 @@ function Home() {
         viewport={{ once: true }}
         className="w-full"
       >
-        <FeaturesSection />
+        {/* <FeaturesSection /> */}
+         <ProductsWithFilter />
       </motion.div>
 
       {/* Top Products */}
@@ -124,7 +125,9 @@ function Home() {
         viewport={{ once: true }}
         className="w-full"
       >
-        <TopProducts />
+        {/* <TopProducts /> */}
+        <FeaturesSection />
+
       </motion.div>
 
       {/* Products with Filter */}
@@ -135,7 +138,8 @@ function Home() {
         viewport={{ once: true }}
         className="w-full"
       >
-        <ProductsWithFilter />
+        {/* <ProductsWithFilter /> */}
+         <TopProducts />
       </motion.div>
 
       {/* Footer */}
