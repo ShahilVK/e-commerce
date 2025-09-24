@@ -12,6 +12,7 @@ import Cart from './pages/Cart';
 import Profile from './pages/Profile';
 import Payment from './pages/Payment';
 import Footer from './components/Footer';
+import OrderSuccess from './pages/OrderSuccess';
 
 
 
@@ -31,6 +32,7 @@ function App() {
       <Route path='/profile' element={<Profile />} />
       <Route path="/payment" element={<Payment />} />
       <Route path='/footer' element={<Footer />} />
+      <Route path='/ordersuccess' element={<OrderSuccess />} />
     </Routes>
     </AuthProvider>
     </BrowserRouter>
