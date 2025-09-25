@@ -1,6 +1,14 @@
 {
   "users": [
     {
+      "id": "pdwh",
+      "name": "Shahil VK",
+      "email": "shahilvk11@gmail.com",
+      "password": "shahil123",
+      "role": "admin",
+      "isAuthenticated": true
+    },
+    {
       "id": "3f25",
       "name": "rizwan vk",
       "email": "riswan@gamil.com",
@@ -86,7 +94,16 @@
       "password": "12344321",
       "role": "user",
       "isAuthenticated": true,
-      "cart": [],
+      "cart": [
+        {
+          "id": "2",
+          "name": "Canon 5D Mark",
+          "price": "£249.99",
+          "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
+          "category": "Camera",
+          "quantity": 1
+        }
+      ],
       "wishlist": [],
       "shippingAddress": [],
       "orders": []
