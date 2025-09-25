@@ -27,7 +27,16 @@
       "password": "12344321",
       "role": "user",
       "isAuthenticated": true,
-      "cart": [],
+      "cart": [
+        {
+          "id": "3",
+          "name": "Wireless Earbuds",
+          "price": "£89.99",
+          "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
+          "category": "Earbuds",
+          "quantity": 1
+        }
+      ],
       "wishlist": [],
       "shippingAddress": [],
       "orders": [
