@@ -141,9 +141,6 @@
 
 
 
-
-
-
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -157,6 +154,7 @@ import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
 import Payment from "./pages/Payment";
 import OrderSuccess from "./pages/OrderSuccess";
+import Orders from "./components/Orders"; 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Dashboard from "./Admin/Dashboard";
@@ -205,6 +203,8 @@ function App() {
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
         <Route path="/ordersuccess" element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
+        <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} /> {/* <-- 2. ADD THE NEW ROUTE */}
+        
 
         {/* --- Admin Dashboard Route --- */}
         <Route
@@ -224,7 +224,6 @@ function App() {
 }
 
 export default App;
-
 
 
 

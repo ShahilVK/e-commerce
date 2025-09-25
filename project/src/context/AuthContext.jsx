@@ -1,104 +1,5 @@
 
 
-// import React, { createContext, useState, useEffect } from "react";
-// import api from "../Api/Axios_Instance";
-// import toast from "react-hot-toast";
-// import { useNavigate } from "react-router-dom";
-
-// export const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [user, setUser] = useState(null);
-//   const navigate = useNavigate();
-
-//   //  Restore user on page refresh
-//   useEffect(() => {
-//     const storedUser = localStorage.getItem("user");
-//     if (storedUser) {
-//       setUser(JSON.parse(storedUser));
-//     }
-//   }, []);
-
-//   const signup = async (newuser) => {
-//     try {
-//       const response = await api.get(`/users?email=${newuser.email}`);
-//       if (response.data.length > 0) {
-//         toast.error("Email id Already Exists");
-//       } else {
-//         const userData = {
-//           ...newuser,
-//           role: "user",
-//           isAuthenticated: true,
-//           cart: [],
-//           wishlist: [],
-//           shippingAddress: [],
-//           orders: [],
-//         };
-
-//         await api.post("/users", userData);
-
-//         setUser(userData);
-//         toast.success("Signup SuccessFull");
-//         navigate("/login");
-//       }
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   const login = async (email, password) => {
-//     try {
-//       const response = await api.get(`/users?email=${email}&&password=${password}`);
-
-//       if (response.data.length === 0) {
-//         toast.error("The UserName or Password doesn't Match");
-//       } else {
-//         const loggedInUser = response.data[0];
-//         setUser(loggedInUser);
-
-//         if (loggedInUser.role === "user") {
-//           const localStorageLoginData = {
-//             isAuthenticated: true,
-//             id: loggedInUser.id,
-//             username: loggedInUser.username,
-//             email: loggedInUser.email,
-//           };
-
-//           localStorage.setItem("user", JSON.stringify(localStorageLoginData));
-//           navigate("/");
-//           toast.success("Logined Successfully");
-//         }
-//       }
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   const logout = () => {
-//     setUser(null);
-//     localStorage.removeItem("user");
-//     navigate("/login");
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ signup, login, logout, user }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export default AuthProvider;
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { createContext, useState, useEffect, useContext } from "react";
 // import api from "../Api/Axios_Instance";
@@ -196,22 +97,23 @@
 
 
 
+
 import React, { createContext, useState, useEffect, useContext } from "react";
 import api from "../Api/Axios_Instance";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(null);
 
 // Custom hook for easy access
 export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // 1. Add a loading state, initially true
+  const [loading, setLoading] = useState(true); // Start as true to prevent redirects on refresh
   const navigate = useNavigate();
 
-  // This effect now handles the initial loading process
+  // This effect runs only once on app startup to check for a logged-in user
   useEffect(() => {
     try {
       const storedUser = localStorage.getItem("user");
@@ -219,22 +121,78 @@ const AuthProvider = ({ children }) => {
         setUser(JSON.parse(storedUser));
       }
     } catch (error) {
-      // If there's an error parsing, clear the storage and user
       console.error("Failed to parse stored user:", error);
-      localStorage.removeItem("user");
+      localStorage.removeItem("user"); // Clear corrupted data
       setUser(null);
     } finally {
-      // 2. Set loading to false after checking localStorage
+      // Set loading to false after checking localStorage, allowing the app to render
       setLoading(false);
     }
   }, []);
 
   const signup = async (newUser) => {
-    // ... your existing signup logic ...
+    try {
+      // 1. Check if a user with the same email already exists
+      const existingUserCheck = await api.get(`/users?email=${newUser.email}`);
+      if (existingUserCheck.data.length > 0) {
+        toast.error("An account with this email already exists.");
+        return; // Stop the function
+      }
+
+      // 2. Create the full user object with default values
+      const userData = {
+        ...newUser,
+        role: "user",
+        isAuthenticated: true,
+        cart: [],
+        wishlist: [],
+        shippingAddress: [],
+        orders: [],
+      };
+
+      // 3. Save the new user to the server and get the response (which includes the ID)
+      const response = await api.post("/users", userData);
+      const createdUser = response.data;
+
+      // 4. Automatically log the new user in
+      setUser(createdUser);
+      localStorage.setItem("user", JSON.stringify(createdUser));
+      
+      toast.success("Signup Successful! Welcome!");
+      navigate("/"); // Redirect to the home page
+    } catch (e) {
+      console.error("Signup failed:", e);
+      toast.error("Signup failed. Please try again.");
+    }
   };
 
   const login = async (email, password) => {
-    // ... your existing login logic ...
+    try {
+      // 1. Fetch user by email only for security (never send password in a GET request)
+      const response = await api.get(`/users?email=${email}`);
+      const users = response.data;
+
+      // 2. Check if a user was found and if the password matches
+      if (users.length === 0 || users[0].password !== password) {
+        toast.error("Invalid email or password.");
+      } else {
+        const loggedInUser = users[0];
+        setUser(loggedInUser);
+        localStorage.setItem("user", JSON.stringify(loggedInUser));
+
+        toast.success(`Welcome back, ${loggedInUser.name}!`);
+        
+        // 3. Redirect based on role
+        if (loggedInUser.role === "admin") {
+          navigate("/dashboard");
+        } else {
+          navigate("/");
+        }
+      }
+    } catch (e) {
+      console.error("Login failed:", e);
+      toast.error("Login failed. Please try again.");
+    }
   };
 
   const logout = () => {
@@ -243,15 +201,19 @@ const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
-  // 3. While loading, render a loading indicator (or nothing)
-  // This prevents the rest of the app (the children) from rendering prematurely
+  // While loading, show a simple loading message. This prevents the app from
+  // redirecting before the user's session has been restored.
   if (loading) {
-    return <div>Loading...</div>; // Or a spinner component
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div>Loading...</div>
+      </div>
+    );
   }
 
-  // Once loading is false, render the app with the correct user state
+  // Once loading is complete, render the rest of the application
   return (
-    <AuthContext.Provider value={{ signup, login, logout, user }}>
+    <AuthContext.Provider value={{ user, signup, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
