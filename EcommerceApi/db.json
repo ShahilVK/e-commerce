@@ -6,7 +6,16 @@
       "email": "shahilvk11@gmail.com",
       "password": "shahil123",
       "role": "admin",
-      "isAuthenticated": true
+      "isAuthenticated": true,
+      "wishlist": [
+        {
+          "id": "1",
+          "name": "Beats Studio Wireless",
+          "price": "£499.99",
+          "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
+          "category": "Headphones"
+        }
+      ]
     },
     {
       "id": "3f25",
@@ -27,16 +36,7 @@
       "password": "12344321",
       "role": "user",
       "isAuthenticated": true,
-      "cart": [
-        {
-          "id": "3",
-          "name": "Wireless Earbuds",
-          "price": "£89.99",
-          "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
-          "category": "Earbuds",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "wishlist": [],
       "shippingAddress": [],
       "orders": [

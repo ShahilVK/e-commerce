@@ -317,7 +317,7 @@ function Dashboard() {
   };
 
   return (
-    <div>
+    <div className="pt-16">
       <Navbar />
       <Toaster position="top-right" />
       <div className="flex">

@@ -9,7 +9,7 @@ const Sidebar = () => {
     { name: "Dashboard", icon: <Home size={18} />, path: "/dashboard" },
     { name: "Products", icon: <Box size={18} />, path: "/dashboard/products" },
     { name: "Orders", icon: <ShoppingCart size={18} />, path: "/dashboard/orders" },
-    { name: "Users", icon: <Users size={18} />, path: "/dashboard/users" },
+    { name: "Users", icon: <Users size={18} />, path: "/dashboard/adminusers" },
     { name: "Settings", icon: <Settings size={18} />, path: "/dashboard/settings" },
   ];
 
