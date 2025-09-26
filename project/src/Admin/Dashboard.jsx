@@ -766,8 +766,6 @@
 
 
 
-
-
 import React, { useEffect, useState } from "react";
 import api from "../Api/Axios_Instance";
 import Sidebar from "./Sidebar";
@@ -871,83 +869,116 @@ function Dashboard() {
   };
 
   // --- Stats ---
-  const totalRevenue = orders.reduce((sum, order) => sum + Number(order.total || 0), 0);
+  const totalRevenue = orders.reduce(
+    (sum, order) => sum + Number(order.total || 0),
+    0
+  );
   const totalOrders = orders.length;
   const totalUsers = users.length;
   const totalProducts = products.length;
 
   return (
-    <div className="pt-16">
+    <div className="flex">
       <Toaster position="top-right" />
-      <div className="flex">
+
+      {/* Sidebar Fixed */}
+      <div className="w-64 h-screen fixed top-0 left-0 bg-white shadow-lg">
         <Sidebar />
-
-        <div className="flex-1 p-6 bg-gray-100 min-h-screen">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">Admin Dashboard</h1>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <StatCard title="Total Revenue" value={`₹${totalRevenue.toFixed(2)}`} color="green" />
-            <StatCard title="Total Orders" value={totalOrders} color="blue" />
-            <StatCard title="Total Users" value={totalUsers} color="purple" />
-            <StatCard title="Total Products" value={totalProducts} color="orange" />
-          </div>
-
-          {/* Add Product */}
-          <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-700">Add New Product</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <input
-                type="text"
-                placeholder="Product Name"
-                value={newProduct.name}
-                onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
-              />
-              <input
-                type="text"
-                placeholder="Price"
-                value={newProduct.price}
-                onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
-              />
-              <input
-                type="text"
-                placeholder="Image URL"
-                value={newProduct.image}
-                onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-                className="border p-2 rounded col-span-1 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-              />
-              <input
-                type="text"
-                placeholder="Short Description"
-                value={newProduct.smallDescription}
-                onChange={(e) => setNewProduct({ ...newProduct, smallDescription: e.target.value })}
-                className="border p-2 rounded col-span-1 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-green-400"
-              />
-            </div>
-            <button
-              onClick={handleAddProduct}
-              className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-500 transition"
-            >
-              Add Product
-            </button>
-          </div>
-
-          {/* Tables */}
-          <DataTable title="Products" data={products} onDelete={handleDeleteProduct} />
-          <UsersTable users={users} />
-          <OrdersTable orders={orders} />
-        </div>
       </div>
-      <Footer />
+
+      {/* Main Content */}
+      <div className="flex-1 ml-64 p-6 bg-gray-100 min-h-screen overflow-y-auto">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">
+          Admin Dashboard
+        </h1>
+
+        {/* Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <StatCard
+            title="Total Revenue"
+            value={`₹${totalRevenue.toFixed(2)}`}
+            color="green"
+          />
+          <StatCard title="Total Orders" value={totalOrders} color="blue" />
+          <StatCard title="Total Users" value={totalUsers} color="purple" />
+          <StatCard
+            title="Total Products"
+            value={totalProducts}
+            color="orange"
+          />
+        </div>
+
+        {/* Add Product */}
+        <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+            Add New Product
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <input
+              type="text"
+              placeholder="Product Name"
+              value={newProduct.name}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, name: e.target.value })
+              }
+              className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+            <input
+              type="text"
+              placeholder="Price"
+              value={newProduct.price}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, price: e.target.value })
+              }
+              className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+            <input
+              type="text"
+              placeholder="Image URL"
+              value={newProduct.image}
+              onChange={(e) =>
+                setNewProduct({ ...newProduct, image: e.target.value })
+              }
+              className="border p-2 rounded col-span-1 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+            <input
+              type="text"
+              placeholder="Short Description"
+              value={newProduct.smallDescription}
+              onChange={(e) =>
+                setNewProduct({
+                  ...newProduct,
+                  smallDescription: e.target.value,
+                })
+              }
+              className="border p-2 rounded col-span-1 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            />
+          </div>
+          <button
+            onClick={handleAddProduct}
+            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-500 transition"
+          >
+            Add Product
+          </button>
+        </div>
+
+        {/* Tables */}
+        <DataTable title="Products" data={products} onDelete={handleDeleteProduct} />
+        <UsersTable users={users} />
+        <OrdersTable orders={orders} />
+
+        {/* Footer */}
+        <Footer />
+      </div>
     </div>
   );
 }
 
 // --- Reusable Components ---
 const StatCard = ({ title, value, color }) => (
-  <div className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all text-center`}>
+  <div
+    className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all text-center`}
+  >
     <h3 className="text-lg font-semibold text-gray-600">{title}</h3>
     <p className={`text-2xl font-bold text-${color}-600`}>{value}</p>
   </div>
@@ -972,9 +1003,15 @@ const DataTable = ({ title, data, onDelete }) => (
             <tr key={p.id} className="hover:bg-gray-100 transition-all">
               <td className="px-4 py-2 border">{p.id}</td>
               <td className="px-4 py-2 border">{p.name}</td>
-              <td className="px-4 py-2 border">₹{Number(p.price || 0).toFixed(2)}</td>
               <td className="px-4 py-2 border">
-                <img src={p.image} alt={p.name} className="w-20 h-20 object-contain rounded" />
+                ₹{Number(p.price || 0).toFixed(2)}
+              </td>
+              <td className="px-4 py-2 border">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="w-20 h-20 object-contain rounded"
+                />
               </td>
               <td className="px-4 py-2 border">
                 <button
@@ -1042,7 +1079,9 @@ const OrdersTable = ({ orders }) => (
             <tr key={o.id} className="hover:bg-gray-100 transition-all">
               <td className="px-4 py-2 border">{o.id}</td>
               <td className="px-4 py-2 border">{o.userId}</td>
-              <td className="px-4 py-2 border">₹{Number(o.total || 0).toFixed(2)}</td>
+              <td className="px-4 py-2 border">
+                ₹{Number(o.total || 0).toFixed(2)}
+              </td>
               <td className="px-4 py-2 border">
                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
                   {(o.items || []).length}
