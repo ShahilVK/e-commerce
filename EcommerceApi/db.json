@@ -93,6 +93,259 @@
           "category": "Camera",
           "quantity": 1,
           "totalPrice": "249.99"
+        },
+        {
+          "id": "mfzjc4t7z4wt5nfzrrl",
+          "date": "2025-09-25T14:55:40.123Z",
+          "items": [
+            {
+              "id": "30",
+              "name": "Caixa Speaker",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/1200x/45/85/86/4585868bc1d6d606a787fcef511bd431.jpg",
+              "category": "Speakers",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzjheuih83hgryy3aj",
+          "date": "2025-09-25T14:59:46.410Z",
+          "items": [
+            {
+              "id": "11",
+              "name": "Apple Watch",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/736x/04/51/eb/0451eb16cd23eaacae98515ad3ad865d.jpg",
+              "category": "Watches",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzjnfson4xsntp464q",
+          "date": "2025-09-25T15:04:27.576Z",
+          "items": [
+            {
+              "id": "14",
+              "name": "Canon EOS",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/1200x/c4/93/2b/c4932b02218c7dffc95de66aa3e0c33d.jpg",
+              "category": "Camera",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzjvzl1p9rwlcgocu",
+          "date": "2025-09-25T15:11:06.469Z",
+          "items": [
+            {
+              "id": "14",
+              "name": "Canon EOS",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/1200x/c4/93/2b/c4932b02218c7dffc95de66aa3e0c33d.jpg",
+              "category": "Camera",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzk8dbxozcma5fkpyk",
+          "date": "2025-09-25T15:20:44.157Z",
+          "items": [
+            {
+              "id": "22",
+              "name": "Leaf Buds",
+              "price": "£99.99",
+              "image": "https://www.boat-lifestyle.com/cdn/shop/files/Scene_05_Brown_800x.png?v=1717817077",
+              "category": "Earbuds",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzkfe0aonml1gxd8g8",
+          "date": "2025-09-25T15:26:11.626Z",
+          "items": [
+            {
+              "id": "23",
+              "name": "Sony Speaker",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/736x/3c/4d/6b/3c4d6bac9ea7b925b0f075e33257cf61.jpg",
+              "category": "Speakers",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzkq21kiya50xolgti",
+          "date": "2025-09-25T15:34:29.336Z",
+          "items": [
+            {
+              "id": "1",
+              "name": "Beats Studio Wireless",
+              "price": "£499.99",
+              "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
+              "category": "Headphones",
+              "quantity": 1
+            }
+          ],
+          "total": "499.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzkudsstdnre4h4mrc",
+          "date": "2025-09-25T15:37:51.196Z",
+          "items": [
+            {
+              "id": "1",
+              "name": "Beats Studio Wireless",
+              "price": "£499.99",
+              "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
+              "category": "Headphones",
+              "quantity": 1
+            }
+          ],
+          "total": "499.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzkvj3c8inxefar0jr",
+          "date": "2025-09-25T15:38:44.712Z",
+          "items": [
+            {
+              "id": "1",
+              "name": "Beats Studio Wireless",
+              "price": "£499.99",
+              "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
+              "category": "Headphones",
+              "quantity": 1
+            }
+          ],
+          "total": "499.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzkxk36nuptlg73yb",
+          "date": "2025-09-25T15:40:19.314Z",
+          "items": [
+            {
+              "id": "1",
+              "name": "Beats Studio Wireless",
+              "price": "£499.99",
+              "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
+              "category": "Headphones",
+              "quantity": 1
+            }
+          ],
+          "total": "499.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mfzl15qq7wt9a23h61",
+          "date": "2025-09-25T15:43:07.346Z",
+          "items": [
+            {
+              "id": "2",
+              "name": "Canon 5D Mark",
+              "price": "£249.99",
+              "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
+              "category": "Camera",
+              "quantity": 1
+            }
+          ],
+          "total": "249.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
         }
       ]
     },
@@ -106,7 +359,85 @@
       "cart": [],
       "wishlist": [],
       "shippingAddress": [],
-      "orders": []
+      "orders": [
+        {
+          "id": "mfzl2la29fnxsdcwuua",
+          "date": "2025-09-25T15:44:14.138Z",
+          "items": [
+            {
+              "id": "32",
+              "name": "Magsafe Power Bank",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/736x/48/3f/71/483f715bfe31c64f22a4d29d41b96af3.jpg",
+              "category": "Power Bank",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "shamillvk",
+            "email": "shamilvk@gmail.com",
+            "phone": "08714059964",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mg0bfns4z5msdrcrysr",
+          "date": "2025-09-26T04:02:13.924Z",
+          "items": [
+            {
+              "id": "2",
+              "name": "Canon 5D Mark",
+              "price": "£249.99",
+              "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
+              "category": "Camera",
+              "quantity": 1
+            },
+            {
+              "id": "3",
+              "name": "Wireless Earbuds",
+              "price": "£89.99",
+              "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
+              "category": "Earbuds",
+              "quantity": 1
+            }
+          ],
+          "total": "339.98",
+          "billing": {
+            "name": "shamillvk",
+            "email": "shamilvk@gmail.com",
+            "phone": "08714059964",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mg0c02f3ndhbzlh3ach",
+          "date": "2025-09-26T04:18:06.015Z",
+          "items": [
+            {
+              "id": "21",
+              "name": "Romos Power Bank",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/736x/67/07/ea/6707ea6434f134dd444c8da7d0a6efed.jpg",
+              "category": "Power Bank",
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "shamillvk",
+            "email": "shamilvk@gmail.com",
+            "phone": "08714059964",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        }
+      ]
     }
   ],
   "products": [

@@ -194,7 +194,7 @@ const Orders = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen pt-10">
       <Navbar />
       <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         {/* ✨ New Feature: Personalized header with User Name and Email */}
