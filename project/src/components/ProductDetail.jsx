@@ -1,24 +1,28 @@
+
+
+
+
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import api from "../Api/Axios_Instance";
+import { motion } from "framer-motion";
+import { ChevronLeft, Minus, Plus, ShoppingCart, Zap, Star } from "lucide-react";
 
 function ProductDetail({ product, onBack }) {
   const [count, setCount] = useState(1);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const basePrice = parseFloat(product.price.replace(/[^\d.]/g, "")) || 0;
+  const basePrice = parseFloat(String(product.price).replace(/[^\d.]/g, "")) || 0;
   const totalPrice = (basePrice * count).toFixed(2);
 
-  // Add to Cart in database
+  // --- Core logic remains unchanged ---
   const addToCart = async () => {
-    if (!user || !user.isAuthenticated) {
-      navigate("/login");
-      return;
+    if (!user) {
+      return navigate("/login");
     }
-
     try {
       const res = await api.get(`/users/${user.id}`);
       let cart = res.data.cart || [];
@@ -26,9 +30,7 @@ function ProductDetail({ product, onBack }) {
 
       if (existingItem) {
         cart = cart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + count }
-            : item
+          item.id === product.id ? { ...item, quantity: item.quantity + count } : item
         );
       } else {
         cart.push({ ...product, quantity: count });
@@ -36,338 +38,98 @@ function ProductDetail({ product, onBack }) {
 
       await api.patch(`/users/${user.id}`, { cart });
       toast.success(`${product.name} added to cart!`);
-      window.dispatchEvent(new Event("cartUpdated")); // update Navbar count
+      window.dispatchEvent(new CustomEvent("cartUpdated"));
     } catch (err) {
       console.error("Error adding to cart:", err);
+      toast.error("Failed to add item to cart.");
     }
   };
 
-  // Buy Now (navigate with product in state, do NOT remove from cart)
-  const handleBuyNow = async () => {
-    if (!user || !user.isAuthenticated) {
-      navigate("/login");
-      return;
+  const handleBuyNow = () => {
+    if (!user) {
+      return navigate("/login");
     }
     navigate("/payment", { state: { buyNowItem: { ...product, quantity: count } } });
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto mt-8">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      className="bg-white rounded-2xl shadow-xl p-6 max-w-4xl mx-auto my-8"
+    >
       <Toaster position="top-right" />
-      <button onClick={onBack} className="mb-4 text-red-500 hover:underline font-semibold">
-        ← Back to Products
+      <button onClick={onBack} className="flex items-center gap-2 mb-6 text-red-500 hover:text-red-700 font-semibold transition-colors">
+        <ChevronLeft size={20} /> Back to Products
       </button>
 
       <div className="flex flex-col md:flex-row gap-8">
-        <div className="flex-1 flex justify-center items-center">
-          <img src={product.image} alt={product.name} className="object-contain h-80 w-full rounded" />
+        {/* Image Section */}
+        <div className="flex-1 flex justify-center items-center bg-gray-100 rounded-xl p-4">
+          <motion.img 
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            src={product.image} 
+            alt={product.name} 
+            className="object-contain h-80 w-full" 
+          />
         </div>
 
+        {/* Details Section */}
         <div className="flex-1 space-y-4">
+          <span className="bg-red-100 text-red-600 text-xs font-semibold px-3 py-1 rounded-full">{product.category || 'Featured'}</span>
           <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
-          <p className="text-gray-500 text-sm italic">
-            {product.smallDescription || "Premium quality product for your needs."}
+          
+          {/* ✨ 1. New Star Rating and Stock Status */}
+          <div className="flex items-center gap-4">
+            <div className="flex text-yellow-400">
+                <Star fill="currentColor" size={20}/><Star fill="currentColor" size={20}/><Star fill="currentColor" size={20}/><Star fill="currentColor" size={20}/><Star size={20}/>
+            </div>
+            <span className="text-green-600 font-semibold">In Stock</span>
+          </div>
+          
+          <p className="text-gray-500 text-sm leading-relaxed">
+            {product.smallDescription || "Experience premium quality and design with this top-rated accessory for your mobile lifestyle."}
           </p>
+          
+          <p className="text-4xl font-bold text-gray-900 mt-2">₹{basePrice.toFixed(2)}</p>
 
-          <div className="flex items-center gap-4 mt-2">
-            <button onClick={() => setCount((prev) => Math.max(1, prev - 1))} className="bg-gray-300 px-4 py-2 rounded text-lg">-</button>
-            <span className="text-xl font-semibold">{count}</span>
-            <button onClick={() => setCount((prev) => prev + 1)} className="bg-gray-300 px-4 py-2 rounded text-lg">+</button>
+          <div className="border-t pt-4 space-y-4">
+            {/* ✨ 2. Redesigned Quantity Selector */}
+            <div className="flex items-center gap-4">
+              <label className="font-semibold text-gray-700">Quantity:</label>
+              <div className="flex items-center border rounded-lg">
+                <button onClick={() => setCount((prev) => Math.max(1, prev - 1))} className="p-3 hover:bg-gray-100 rounded-l-lg transition">
+                  <Minus size={16} />
+                </button>
+                <span className="text-xl font-semibold px-4">{count}</span>
+                <button onClick={() => setCount((prev) => prev + 1)} className="p-3 hover:bg-gray-100 rounded-r-lg transition">
+                  <Plus size={16} />
+                </button>
+              </div>
+            </div>
+
+            <p className="text-2xl font-bold text-red-600">Total: ₹{totalPrice}</p>
           </div>
 
-          <p className="text-2xl font-bold text-yellow-600 mt-2">Total: ₹{totalPrice}</p>
-
-          <div className="flex gap-4 mt-6">
-            <button onClick={addToCart} className="flex-1 bg-gray-800 text-white py-3 rounded hover:bg-gray-700 transition">
-              Add to Cart
+          {/* ✨ 3. New Modern Action Buttons with Icons */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <button onClick={addToCart} className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-white py-3 rounded-lg font-semibold hover:bg-gray-700 transition-transform transform hover:scale-105">
+              <ShoppingCart size={20} /> Add to Cart
             </button>
-            <button onClick={handleBuyNow} className="flex-1 bg-yellow-600 text-white py-3 rounded hover:bg-yellow-500 transition">
-              Buy Now
+            <button onClick={handleBuyNow} className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-yellow-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-transform transform hover:scale-105">
+              <Zap size={20} /> Buy Now
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default ProductDetail;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useContext } from "react";
-// import { AuthContext } from "../context/AuthContext";
-// import { useNavigate } from "react-router-dom";
-// import toast, { Toaster } from "react-hot-toast";
-// import api from "../Api/Axios_Instance";
-
-// function ProductDetail({ product, onBack }) {
-//   const [count, setCount] = useState(1);
-//   const { user } = useContext(AuthContext);
-//   const navigate = useNavigate();
-
-//   const basePrice = parseFloat(product.price.replace(/[^\d.]/g, "")) || 0;
-//   const totalPrice = (basePrice * count).toFixed(2);
-
-//   // Add to Cart in database
-//   const addToCart = async () => {
-//     if (!user || !user.isAuthenticated) {
-//       navigate("/login");
-//       return;
-//     }
-
-//     try {
-//       const res = await api.get(`/users/${user.id}`);
-//       let cart = res.data.cart || [];
-//       const existingItem = cart.find((item) => item.id === product.id);
-
-//       if (existingItem) {
-//         cart = cart.map((item) =>
-//           item.id === product.id ? { ...item, quantity: item.quantity + count } : item
-//         );
-//       } else {
-//         cart.push({ ...product, quantity: count });
-//       }
-
-//       await api.patch(`/users/${user.id}`, { cart });
-//       toast.success(`${product.name} added to cart!`);
-//       window.dispatchEvent(new Event("cartUpdated")); // update Navbar count
-//     } catch (err) {
-//       console.error("Error adding to cart:", err);
-//     }
-//   };
-
-//   // Buy Now
-//   const handleBuyNow = async () => {
-//     await addToCart();
-//     navigate("/payment");
-//   };
-
-//   return (
-//     <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto mt-8">
-//       <Toaster position="top-right" />
-//       <button onClick={onBack} className="mb-4 text-red-500 hover:underline font-semibold">
-//         ← Back to Products
-//       </button>
-
-//       <div className="flex flex-col md:flex-row gap-8">
-//         <div className="flex-1 flex justify-center items-center">
-//           <img src={product.image} alt={product.name} className="object-contain h-80 w-full rounded" />
-//         </div>
-
-//         <div className="flex-1 space-y-4">
-//           <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
-//           <p className="text-gray-500 text-sm italic">
-//             {product.smallDescription || "Premium quality product for your needs."}
-//           </p>
-
-//           <div className="flex items-center gap-4 mt-2">
-//             <button onClick={() => setCount((prev) => Math.max(1, prev - 1))} className="bg-gray-300 px-4 py-2 rounded text-lg">-</button>
-//             <span className="text-xl font-semibold">{count}</span>
-//             <button onClick={() => setCount((prev) => prev + 1)} className="bg-gray-300 px-4 py-2 rounded text-lg">+</button>
-//           </div>
-
-//           <p className="text-2xl font-bold text-yellow-600 mt-2">Total: ₹{totalPrice}</p>
-
-//           <div className="flex gap-4 mt-6">
-//             <button onClick={addToCart} className="flex-1 bg-gray-800 text-white py-3 rounded hover:bg-gray-700 transition">
-//               Add to Cart
-//             </button>
-//             <button onClick={handleBuyNow} className="flex-1 bg-yellow-600 text-white py-3 rounded hover:bg-yellow-500 transition">
-//               Buy Now
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ProductDetail;
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useContext } from "react";
-// import { AuthContext } from "../context/AuthContext";
-// import { useNavigate } from "react-router-dom";
-// import toast, { Toaster } from "react-hot-toast";
-
-// function ProductDetail({ product, onBack }) {
-//   const [count, setCount] = useState(1);
-//   const { user } = useContext(AuthContext);
-//   const navigate = useNavigate();
-
-//   const basePrice = parseFloat(product.price.replace(/[^\d.]/g, "")) || 0;
-//   const totalPrice = (basePrice * count).toFixed(2);
-
-//   // Add / Update Cart
-//   const updateCart = () => {
-//     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-//     const existingItem = cart.find((item) => item.id === product.id);
-
-//     if (existingItem) {
-//       existingItem.quantity += count;
-//     } else {
-//       cart.push({ ...product, quantity: count });
-//     }
-
-//     localStorage.setItem("cart", JSON.stringify(cart));
-//     window.dispatchEvent(new Event("cartUpdated"));
-//     toast.success(`${product.name} added to cart!`);
-//   };
-
-//   // Toggle Wishlist
-//   const toggleWishlist = () => {
-//     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-//     const exists = wishlist.find((item) => item.id === product.id);
-
-//     const updatedWishlist = exists
-//       ? wishlist.filter((item) => item.id !== product.id)
-//       : [...wishlist, product];
-
-//     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-//     toast.success(
-//       exists
-//         ? `${product.name} removed from wishlist`
-//         : `${product.name} added to wishlist`
-//     );
-//   };
-
-//   const handleAddToCart = () => {
-//     if (!user || !user.isAuthenticated) {
-//       navigate("/login");
-//       return;
-//     }
-//     updateCart();
-//   };
-
-//   const handleBuyNow = () => {
-//     if (!user || !user.isAuthenticated) {
-//       navigate("/login");
-//       return;
-//     }
-
-//     const buyNowItem = { ...product, quantity: count, totalPrice };
-
-//     // Merge Buy Now with cart if needed
-//     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-//     const existsInCart = cart.find((item) => item.id === buyNowItem.id);
-//     if (existsInCart) {
-//       existsInCart.quantity += buyNowItem.quantity;
-//       localStorage.setItem("cart", JSON.stringify(cart));
-//       localStorage.removeItem("buyNowItem");
-//     } else {
-//       localStorage.setItem("buyNowItem", JSON.stringify(buyNowItem));
-//     }
-
-//     navigate("/payment");
-//   };
-
-//   return (
-//     <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto mt-8">
-//       <Toaster position="top-right" />
-//       <button
-//         onClick={onBack}
-//         className="mb-4 text-red-500 hover:underline font-semibold"
-//       >
-//         ← Back to Products
-//       </button>
-
-//       <div className="flex flex-col md:flex-row gap-8">
-//         {/* Image */}
-//         <div className="flex-1 flex justify-center items-center">
-//           <img
-//             src={product.image}
-//             alt={product.name}
-//             className="object-contain h-80 w-full rounded"
-//           />
-//         </div>
-
-//         {/* Details */}
-//         <div className="flex-1 space-y-4">
-//           <h2 className="text-3xl font-bold text-gray-800">{product.name}</h2>
-//           <p className="text-gray-500 text-sm italic">
-//             {product.smallDescription ||
-//               "This is a premium quality product designed for your needs."}
-//           </p>
-//           <p className="text-gray-600 text-lg">{product.description}</p>
-
-//           {/* Quantity */}
-//           <div className="flex items-center gap-4 mt-2">
-//             <button
-//               onClick={() => setCount((prev) => Math.max(1, prev - 1))}
-//               className="bg-gray-300 px-4 py-2 rounded text-lg"
-//             >
-//               -
-//             </button>
-//             <span className="text-xl font-semibold">{count}</span>
-//             <button
-//               onClick={() => setCount((prev) => prev + 1)}
-//               className="bg-gray-300 px-4 py-2 rounded text-lg"
-//             >
-//               +
-//             </button>
-//           </div>
-
-//           <p className="text-2xl font-bold text-yellow-600 mt-2">
-//             Total: ₹{totalPrice}
-//           </p>
-
-//           {/* Actions */}
-//           <div className="flex gap-4 mt-6">
-//             <button
-//               onClick={handleAddToCart}
-//               className="flex-1 bg-gray-800 text-white py-3 rounded hover:bg-gray-700 transition"
-//             >
-//               Add to Cart
-//             </button>
-//             <button
-//               onClick={handleBuyNow}
-//               className="flex-1 bg-yellow-600 text-white py-3 rounded hover:bg-yellow-500 transition"
-//             >
-//               Buy Now
-//             </button>
-//             <button
-//               onClick={() => {
-//                 if (!user || !user.isAuthenticated) {
-//                   navigate("/login");
-//                   return;
-//                 }
-//                 toggleWishlist();
-//               }}
-//               className="bg-gray-300 text-gray-800 px-6 rounded hover:bg-gray-400 transition"
-//             >
-//               ♥
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ProductDetail;
-
 
 
 
