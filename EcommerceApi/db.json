@@ -54,32 +54,7 @@
       "password": "12344321",
       "role": "user",
       "isAuthenticated": true,
-      "cart": [
-        {
-          "id": "2",
-          "name": "Canon 5D Mark",
-          "price": "£89.99",
-          "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
-          "category": "Camera",
-          "quantity": 1
-        },
-        {
-          "id": "1",
-          "name": "Beats Studio Wireless",
-          "price": "£89.99",
-          "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
-          "category": "Headphones",
-          "quantity": 1
-        },
-        {
-          "id": "11",
-          "name": "Apple Watch",
-          "price": "£99.99",
-          "image": "https://i.pinimg.com/736x/04/51/eb/0451eb16cd23eaacae98515ad3ad865d.jpg",
-          "category": "Watches",
-          "quantity": 1
-        }
-      ],
+      "cart": [],
       "wishlist": [],
       "shippingAddress": [],
       "orders": [
