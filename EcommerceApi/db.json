@@ -56,18 +56,26 @@
       "isAuthenticated": true,
       "cart": [
         {
-          "id": "3",
-          "name": "Wireless Earbuds",
+          "id": "2",
+          "name": "Canon 5D Mark",
           "price": "£89.99",
-          "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
-          "category": "Earbuds",
+          "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
+          "category": "Camera",
           "quantity": 1
         },
         {
-          "id": "4",
-          "name": "Smart Watch T800 Ultra",
-          "price": "£59.99",
-          "image": "https://i.pinimg.com/1200x/e6/33/03/e63303eceaae9db904888540a958e734.jpg",
+          "id": "1",
+          "name": "Beats Studio Wireless",
+          "price": "£89.99",
+          "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
+          "category": "Headphones",
+          "quantity": 1
+        },
+        {
+          "id": "11",
+          "name": "Apple Watch",
+          "price": "£99.99",
+          "image": "https://i.pinimg.com/736x/04/51/eb/0451eb16cd23eaacae98515ad3ad865d.jpg",
           "category": "Watches",
           "quantity": 1
         }
