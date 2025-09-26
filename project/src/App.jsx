@@ -103,6 +103,7 @@ import { useAuth } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import AdminProducts from "./Admin/AdminProducts";
 import AdminOrders from "./Admin/AdminOrders";
+import AdminUsers from "./Admin/Adminusers";
 
 // --- Route Guards ---
 
@@ -158,6 +159,7 @@ function App() {
         />
         <Route path="/adminproducts" element={<AdminRoute><AdminProducts /></AdminRoute>} />
         <Route path="/adminorders" element={<AdminRoute><AdminOrders /></AdminRoute>} />
+        <Route path="/adminusers" element={<AdminRoute><AdminUsers /></AdminRoute>} />
 
         
         {/* Fallback */}
