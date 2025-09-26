@@ -58,7 +58,7 @@ const Contact = () => {
               </p>
               <div className="space-y-6">
                 <InfoCard icon={<Phone size={24} />} title="Call Us">
-                  <p>+91 98765 43210</p>
+                  <p>+91 8714059965</p>
                 </InfoCard>
                 <InfoCard icon={<Mail size={24} />} title="Email Us">
                   <p>support@tektrov.com</p>
