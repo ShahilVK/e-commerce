@@ -7,13 +7,40 @@
       "password": "shahil123",
       "role": "admin",
       "isAuthenticated": true,
-      "wishlist": [
+      "wishlist": [],
+      "cart": [
         {
-          "id": "1",
-          "name": "Beats Studio Wireless",
-          "price": "£499.99",
-          "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
-          "category": "Headphones"
+          "id": "2",
+          "name": "Canon 5D Mark",
+          "price": "£249.99",
+          "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
+          "category": "Camera",
+          "quantity": 1
+        }
+      ],
+      "orders": [
+        {
+          "id": "mg0df9hstaqgj0hcqz",
+          "date": "2025-09-26T04:57:54.640Z",
+          "items": [
+            {
+              "id": "14",
+              "name": "Canon EOS",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/1200x/c4/93/2b/c4932b02218c7dffc95de66aa3e0c33d.jpg",
+              "category": "Camera",
+              "quantity": 2
+            }
+          ],
+          "total": "199.98",
+          "billing": {
+            "name": "shamillvk",
+            "email": "shamilvk@gmail.com",
+            "phone": "08714059964",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
         }
       ]
     },
@@ -342,6 +369,29 @@
             "name": "Shahil VK",
             "email": "shahilvk99@gmail.com",
             "phone": "8714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
+        },
+        {
+          "id": "mg0dian8tzi5svfeq0k",
+          "date": "2025-09-26T05:00:16.100Z",
+          "items": [
+            {
+              "id": "30",
+              "name": "Caixa Speaker",
+              "price": "£99.99",
+              "image": "https://i.pinimg.com/1200x/45/85/86/4585868bc1d6d606a787fcef511bd431.jpg",
+              "category": "Speakers",
+              "quantity": 2
+            }
+          ],
+          "total": "199.98",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "08714059965",
             "address": "vattahouse"
           },
           "paymentMethod": "card",

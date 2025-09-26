@@ -162,6 +162,7 @@ import Dashboard from "./Admin/Dashboard";
 // Import Components and Hooks
 import { useAuth } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
+import AdminProducts from "./Admin/AdminProducts";
 
 // --- Route Guards ---
 
@@ -215,6 +216,7 @@ function App() {
             </AdminRoute>
           }
         />
+        <Route path="/adminproducts" element={<AdminRoute><AdminProducts /></AdminRoute>} />
         
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
