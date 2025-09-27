@@ -285,8 +285,6 @@
 
 
 
-
-
 import React, { useEffect, useState, useMemo } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -360,7 +358,7 @@ const AdminProducts = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [editingProduct, setEditingProduct] = useState(null);
-  const [newProductData, setNewProductData] = useState({ name: "", price: "", image: "", category: "" });
+  const [newProductData, setNewProductData] = useState({ name: "", price: "", image: "", category: "", stock: "" });
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -381,7 +379,9 @@ const AdminProducts = () => {
     setIsLoading(true);
     try {
       const res = await api.get("/products");
-      setProducts(res.data || []);
+      // Add a default stock value if it's missing from the API response
+      const productsWithStock = res.data.map(p => ({ ...p, stock: p.stock ?? 0 }));
+      setProducts(productsWithStock || []);
     } catch (err) {
       console.error(err);
       toast.error("Failed to fetch products");
@@ -427,6 +427,7 @@ const AdminProducts = () => {
         name: editingProduct.name,
         category: editingProduct.category,
         image: editingProduct.image,
+        stock: Number(editingProduct.stock),
       });
       toast.success("Product updated successfully!");
       setEditingProduct(null);
@@ -437,7 +438,7 @@ const AdminProducts = () => {
   };
 
   const handleOpenAddModal = () => {
-    setNewProductData({ name: "", price: "", image: "", category: "" });
+    setNewProductData({ name: "", price: "", image: "", category: "", stock: "" });
     setIsAddModalOpen(true);
   };
 
@@ -448,10 +449,14 @@ const AdminProducts = () => {
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
-    const { name, price, image, category } = newProductData;
-    if (!name || !price || !image || !category) return toast.error("All fields are required");
+    const { name, price, image, category, stock } = newProductData;
+    if (!name || !price || !image || !category || stock === '') return toast.error("All fields are required");
     try {
-      await api.post("/products", { ...newProductData, price: formatPrice(price) });
+      await api.post("/products", { 
+        ...newProductData, 
+        price: formatPrice(price),
+        stock: Number(stock)
+      });
       toast.success("Product added successfully!");
       setIsAddModalOpen(false);
       fetchProducts();
@@ -491,6 +496,12 @@ const AdminProducts = () => {
     </div>
   );
 
+  const getStockStatus = (stock) => {
+    if (stock === 0) return { text: 'Out of Stock', className: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' };
+    if (stock <= 10) return { text: `Low Stock (${stock})`, className: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' };
+    return { text: `In Stock (${stock})`, className: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' };
+  };
+
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
       <Toaster position="top-right" containerClassName="text-sm"/>
@@ -526,6 +537,7 @@ const AdminProducts = () => {
                 <thead className="bg-gray-50 dark:bg-gray-700">
                   <tr>
                     <th className="p-3 font-semibold text-gray-600 dark:text-gray-300">Product</th>
+                    <th className="p-3 font-semibold text-gray-600 dark:text-gray-300">Stock</th>
                     <th className="p-3 font-semibold text-gray-600 dark:text-gray-300">Price</th>
                     <th className="p-3 font-semibold text-gray-600 dark:text-gray-300">Category</th>
                     <th className="p-3 font-semibold text-gray-600 dark:text-gray-300 text-center">Actions</th>
@@ -534,7 +546,7 @@ const AdminProducts = () => {
                 <tbody>
                   {currentProducts.length === 0 ? (
                     <tr>
-                      <td colSpan="4" className="text-center py-10 text-gray-500 dark:text-gray-400">
+                      <td colSpan="5" className="text-center py-10 text-gray-500 dark:text-gray-400">
                         <div className="flex flex-col items-center gap-2">
                            <Package size={40}/>
                            <span className="font-medium">No products found.</span>
@@ -550,6 +562,12 @@ const AdminProducts = () => {
                             <img src={p.image} alt={p.name} className="w-14 h-14 object-cover rounded-md shadow-sm" />
                             <span className="font-bold text-gray-800 dark:text-gray-100">{p.name}</span>
                           </div>
+                        </td>
+                         <td className="p-3">
+                            {(() => {
+                                const status = getStockStatus(p.stock);
+                                return <span className={`px-2 py-1 text-xs font-semibold rounded-full ${status.className}`}>{status.text}</span>;
+                            })()}
                         </td>
                         <td className="p-3 font-medium text-gray-700 dark:text-gray-300">{formatPrice(parsePrice(p.price))}</td>
                         <td className="p-3 text-gray-600 dark:text-gray-400">{p.category}</td>
@@ -589,7 +607,10 @@ const AdminProducts = () => {
               </div>
               <div className="space-y-4">
                   <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Product Name</label><input type="text" name="name" value={editingProduct ? editingProduct.name : newProductData.name} onChange={editingProduct ? handleEditInputChange : handleAddInputChange} className="mt-1 block w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" required/></div>
-                  <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Price (₹)</label><input type="number" name="price" value={editingProduct ? editingProduct.price : newProductData.price} onChange={editingProduct ? handleEditInputChange : handleAddInputChange} className="mt-1 block w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" required step="0.01"/></div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Price (₹)</label><input type="number" name="price" value={editingProduct ? editingProduct.price : newProductData.price} onChange={editingProduct ? handleEditInputChange : handleAddInputChange} className="mt-1 block w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" required step="0.01"/></div>
+                    <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Stock Quantity</label><input type="number" name="stock" value={editingProduct ? editingProduct.stock : newProductData.stock} onChange={editingProduct ? handleEditInputChange : handleAddInputChange} className="mt-1 block w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" required /></div>
+                  </div>
                   <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Category</label><input type="text" name="category" value={editingProduct ? editingProduct.category : newProductData.category} onChange={editingProduct ? handleEditInputChange : handleAddInputChange} className="mt-1 block w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" required/></div>
                   <div><label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Image URL</label><input type="text" name="image" value={editingProduct ? editingProduct.image : newProductData.image} onChange={editingProduct ? handleEditInputChange : handleAddInputChange} className="mt-1 block w-full p-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white" required/></div>
               </div>

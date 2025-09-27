@@ -79,7 +79,8 @@
           "paymentMethod": "card",
           "status": "Processing"
         }
-      ]
+      ],
+      "isBlocked": false
     },
     {
       "id": "3f25",
@@ -601,9 +602,10 @@
     {
       "id": "1",
       "name": "Beats Studio Wireless",
-      "price": "£89.99",
+      "price": "₹89.99",
       "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
-      "category": "Headphones"
+      "category": "Headphones",
+      "stock": 5
     },
     {
       "id": "2",
