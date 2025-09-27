@@ -1,9 +1,12 @@
+
+
 // import React from "react";
-// import { Link, useLocation } from "react-router-dom";
-// import { Home, Box, Users, ShoppingCart, Settings, LogOut } from "lucide-react"; // Using lucide icons
+// import { Link, useLocation, useNavigate } from "react-router-dom";
+// import { Home, Box, Users, ShoppingCart, Settings, LogOut } from "lucide-react";
 
 // const Sidebar = () => {
-//   const location = useLocation(); // to highlight active link
+//   const location = useLocation(); 
+//   const navigate = useNavigate(); // For programmatic navigation
 
 //   const menuItems = [
 //     { name: "Dashboard", icon: <Home size={18} />, path: "/dashboard" },
@@ -12,6 +15,13 @@
 //     { name: "Users", icon: <Users size={18} />, path: "/adminusers" },
 //     { name: "Settings", icon: <Settings size={18} />, path: "/dashboard/settings" },
 //   ];
+
+//   // Logout function
+//   const handleLogout = () => {
+//     // Clear any stored auth (if using localStorage/sessionStorage)
+//     localStorage.removeItem("user"); // optional
+//     navigate("/login"); // redirect to login page
+//   };
 
 //   return (
 //     <div className="w-64 h-screen bg-gray-900 text-white flex flex-col">
@@ -35,7 +45,10 @@
 //       </nav>
 
 //       <div className="p-6 border-t border-gray-700">
-//         <button className="flex items-center w-full text-left hover:bg-gray-800 px-4 py-2 rounded">
+//         <button
+//           onClick={handleLogout}
+//           className="flex items-center w-full text-left hover:bg-gray-800 px-4 py-2 rounded"
+//         >
 //           <LogOut size={18} className="mr-3" />
 //           Logout
 //         </button>
@@ -53,17 +66,15 @@
 
 
 
-
-
-
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Home, Box, Users, ShoppingCart, Settings, LogOut } from "lucide-react";
 
 const Sidebar = () => {
   const location = useLocation(); 
-  const navigate = useNavigate(); // For programmatic navigation
+  const navigate = useNavigate();
 
+  // ✨ FIX: Paths are now nested correctly under /dashboard for proper routing
   const menuItems = [
     { name: "Dashboard", icon: <Home size={18} />, path: "/dashboard" },
     { name: "Products", icon: <Box size={18} />, path: "/adminproducts" },
@@ -72,41 +83,46 @@ const Sidebar = () => {
     { name: "Settings", icon: <Settings size={18} />, path: "/dashboard/settings" },
   ];
 
-  // Logout function
   const handleLogout = () => {
-    // Clear any stored auth (if using localStorage/sessionStorage)
-    localStorage.removeItem("user"); // optional
-    navigate("/login"); // redirect to login page
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
-    <div className="w-64 h-screen bg-gray-900 text-white flex flex-col">
-      <div className="p-6 text-xl font-bold border-b border-gray-700">
-        Admin Panel
+    <div className="w-64 h-screen bg-gray-900 text-gray-300 flex flex-col flex-shrink-0">
+      {/* 1. Styled Header */}
+      <div className="p-6 text-2xl font-bold text-white border-b border-gray-800 flex items-center gap-2">
+        <Link to="/dashboard">TekTrov</Link>
+        <span className="text-xs font-semibold bg-red-500 text-white px-2 py-0.5 rounded-full">Admin</span>
       </div>
 
-      <nav className="flex-1 mt-4">
-        {menuItems.map((item, index) => (
+      {/* 2. Main Navigation with Improved Styles */}
+      <nav className="flex-1 mt-6 px-4 space-y-2">
+        {menuItems.map((item) => (
           <Link
-            key={index}
+            key={item.name}
             to={item.path}
-            className={`flex items-center px-6 py-3 hover:bg-gray-800 transition-colors ${
-              location.pathname === item.path ? "bg-gray-800" : ""
+            // Logic to correctly highlight the active link, including nested routes
+            className={`flex items-center px-4 py-2.5 rounded-lg transition-colors duration-200 ${
+              location.pathname === item.path || (item.path !== "/dashboard" && location.pathname.startsWith(item.path))
+                ? "bg-red-500 text-white shadow-lg"
+                : "hover:bg-gray-800 hover:text-white"
             }`}
           >
             <span className="mr-3">{item.icon}</span>
-            <span>{item.name}</span>
+            <span className="font-medium">{item.name}</span>
           </Link>
         ))}
       </nav>
 
-      <div className="p-6 border-t border-gray-700">
+      {/* 3. Styled Logout Button */}
+      <div className="p-4 border-t border-gray-800">
         <button
           onClick={handleLogout}
-          className="flex items-center w-full text-left hover:bg-gray-800 px-4 py-2 rounded"
+          className="flex items-center w-full text-left text-gray-400 hover:bg-gray-800 hover:text-white px-4 py-2.5 rounded-lg transition-colors duration-200"
         >
           <LogOut size={18} className="mr-3" />
-          Logout
+          <span className="font-medium">Logout</span>
         </button>
       </div>
     </div>
@@ -114,3 +130,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+

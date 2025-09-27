@@ -625,23 +625,308 @@
 
 
 
+// import React, { useEffect, useState } from "react";
+// import api from "../Api/Axios_Instance";
+// import Sidebar from "./Sidebar";
+// import Footer from "../components/Footer";
+// import toast, { Toaster } from "react-hot-toast";
+// import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+// import { Line } from 'react-chartjs-2';
+
+// // Register Chart.js components
+// ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+// function Dashboard() {
+//   const [users, setUsers] = useState([]);
+//   const [orders, setOrders] = useState([]);
+//   const [chartData, setChartData] = useState({
+//     labels: [],
+//     datasets: []
+//   });
+
+//   useEffect(() => {
+//     fetchUsers();
+//     fetchOrders();
+//   }, []);
+
+//   // Fetch Users
+//   const fetchUsers = async () => {
+//     try {
+//       const res = await api.get("/users");
+//       setUsers(res.data || []);
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+//   // Fetch Orders
+//   const fetchOrders = async () => {
+//     try {
+//       let allOrders = [];
+
+//       try {
+//         const res = await api.get("/orders");
+//         if (res.data && res.data.length > 0) {
+//           allOrders = res.data;
+//         }
+//       } catch {
+//         console.log("No global /orders, using user.orders");
+//       }
+
+//       if (allOrders.length === 0) {
+//         const usersRes = await api.get("/users");
+//         usersRes.data.forEach((u) => {
+//           if (u.orders && Array.isArray(u.orders)) {
+//             allOrders = [
+//               ...allOrders,
+//               ...u.orders.map((o) => ({ ...o, userId: u.id })),
+//             ];
+//           }
+//         });
+//       }
+
+//       setOrders(allOrders);
+//       processChartData(allOrders);
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+//   // Process chart data
+//   const processChartData = (ordersData) => {
+//     // Group orders by date (assuming orders have a date field)
+//     const revenueByDate = {};
+    
+//     ordersData.forEach(order => {
+//       // Use order date if available, otherwise use current date as fallback
+//       const date = order.date ? new Date(order.date).toLocaleDateString() : new Date().toLocaleDateString();
+//       if (!revenueByDate[date]) {
+//         revenueByDate[date] = 0;
+//       }
+//       revenueByDate[date] += Number(order.total || 0);
+//     });
+
+//     // Sort dates and prepare chart data
+//     const sortedDates = Object.keys(revenueByDate).sort((a, b) => new Date(a) - new Date(b));
+//     const revenueValues = sortedDates.map(date => revenueByDate[date]);
+
+//     setChartData({
+//       labels: sortedDates,
+//       datasets: [
+//         {
+//           label: 'Daily Revenue',
+//           data: revenueValues,
+//           borderColor: 'rgb(75, 192, 192)',
+//           backgroundColor: 'rgba(75, 192, 192, 0.5)',
+//           tension: 0.3,
+//         },
+//       ],
+//     });
+//   };
+
+//   // --- Stats ---
+//   const totalRevenue = orders.reduce(
+//     (sum, order) => sum + Number(order.total || 0),
+//     0
+//   );
+//   const totalOrders = orders.length;
+//   const totalUsers = users.length;
+
+//   return (
+//     <div className="flex">
+//       <Toaster position="top-right" />
+
+//       {/* Sidebar Fixed */}
+//       <div className="w-64 h-screen fixed top-0 left-0 bg-white shadow-lg">
+//         <Sidebar />
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="flex-1 ml-64 p-6 bg-gray-100 min-h-screen overflow-y-auto">
+//         <h1 className="text-3xl font-bold text-gray-800 mb-6">
+//           Admin Dashboard
+//         </h1>
+
+//         {/* Stats */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+//           <StatCard
+//             title="Total Revenue"
+//             value={`₹${totalRevenue.toFixed(2)}`}
+//             color="green"
+//           />
+//           <StatCard title="Total Orders" value={totalOrders} color="blue" />
+//           <StatCard title="Total Users" value={totalUsers} color="purple" />
+//         </div>
+
+//         {/* Revenue Chart */}
+//         <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
+//           <h2 className="text-2xl font-semibold mb-4 text-gray-700">Revenue Overview</h2>
+//           <div className="h-80">
+//             <Line 
+//               data={chartData} 
+//               options={{
+//                 responsive: true,
+//                 maintainAspectRatio: false,
+//                 plugins: {
+//                   legend: {
+//                     position: 'top',
+//                   },
+//                   title: {
+//                     display: true,
+//                     text: 'Daily Revenue Trend',
+//                   },
+//                 },
+//                 scales: {
+//                   y: {
+//                     beginAtZero: true,
+//                     ticks: {
+//                       callback: function(value) {
+//                         return '₹' + value;
+//                       }
+//                     }
+//                   }
+//                 }
+//               }}
+//             />
+//           </div>
+//         </div>
+
+//         {/* Tables */}
+//         <UsersTable users={users} />
+//         <OrdersTable orders={orders} />
+
+//         {/* Footer */}
+//         <Footer />
+//       </div>
+//     </div>
+//   );
+// }
+
+// // --- Reusable Components ---
+// const StatCard = ({ title, value, color }) => (
+//   <div
+//     className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all text-center`}
+//   >
+//     <h3 className="text-lg font-semibold text-gray-600">{title}</h3>
+//     <p className={`text-2xl font-bold text-${color}-600`}>{value}</p>
+//   </div>
+// );
+
+// const UsersTable = ({ users }) => (
+//   <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
+//     <h2 className="text-2xl font-semibold mb-4 text-gray-700">Users</h2>
+//     <div className="overflow-x-auto">
+//       <table className="min-w-full border rounded-lg overflow-hidden">
+//         <thead className="bg-gray-200">
+//           <tr>
+//             <th className="px-4 py-2 border">ID</th>
+//             <th className="px-4 py-2 border">Name</th>
+//             <th className="px-4 py-2 border">Email</th>
+//             <th className="px-4 py-2 border">Orders</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {users.map((u) => (
+//             <tr key={u.id} className="hover:bg-gray-100 transition-all">
+//               <td className="px-4 py-2 border">{u.id}</td>
+//               <td className="px-4 py-2 border">{u.name}</td>
+//               <td className="px-4 py-2 border">{u.email}</td>
+//               <td className="px-4 py-2 border">
+//                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
+//                   {u.orders?.length || 0}
+//                 </span>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   </div>
+// );
+
+// const OrdersTable = ({ orders }) => (
+//   <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
+//     <h2 className="text-2xl font-semibold mb-4 text-gray-700">Orders</h2>
+//     <div className="overflow-x-auto">
+//       <table className="min-w-full border rounded-lg overflow-hidden">
+//         <thead className="bg-gray-200">
+//           <tr>
+//             <th className="px-4 py-2 border">Order ID</th>
+//             <th className="px-4 py-2 border">User ID</th>
+//             <th className="px-4 py-2 border">Total</th>
+//             <th className="px-4 py-2 border">Items</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {orders.map((o) => (
+//             <tr key={o.id} className="hover:bg-gray-100 transition-all">
+//               <td className="px-4 py-2 border">{o.id}</td>
+//               <td className="px-4 py-2 border">{o.userId}</td>
+//               <td className="px-4 py-2 border">
+//                 ₹{Number(o.total || 0).toFixed(2)}
+//               </td>
+//               <td className="px-4 py-2 border">
+//                 <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
+//                   {(o.items || []).length}
+//                 </span>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   </div>
+// );
+
+// export default Dashboard;
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from "react";
 import api from "../Api/Axios_Instance";
 import Sidebar from "./Sidebar";
 import Footer from "../components/Footer";
 import toast, { Toaster } from "react-hot-toast";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import {
+  DollarSign,
+  ShoppingCart,
+  Users,
+} from "lucide-react";
 
 // Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function Dashboard() {
   const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
   const [chartData, setChartData] = useState({
     labels: [],
-    datasets: []
+    datasets: [],
   });
 
   useEffect(() => {
@@ -663,7 +948,6 @@ function Dashboard() {
   const fetchOrders = async () => {
     try {
       let allOrders = [];
-
       try {
         const res = await api.get("/orders");
         if (res.data && res.data.length > 0) {
@@ -694,37 +978,38 @@ function Dashboard() {
 
   // Process chart data
   const processChartData = (ordersData) => {
-    // Group orders by date (assuming orders have a date field)
     const revenueByDate = {};
-    
-    ordersData.forEach(order => {
-      // Use order date if available, otherwise use current date as fallback
-      const date = order.date ? new Date(order.date).toLocaleDateString() : new Date().toLocaleDateString();
+    ordersData.forEach((order) => {
+      const date = order.date
+        ? new Date(order.date).toLocaleDateString()
+        : new Date().toLocaleDateString();
       if (!revenueByDate[date]) {
         revenueByDate[date] = 0;
       }
       revenueByDate[date] += Number(order.total || 0);
     });
 
-    // Sort dates and prepare chart data
-    const sortedDates = Object.keys(revenueByDate).sort((a, b) => new Date(a) - new Date(b));
-    const revenueValues = sortedDates.map(date => revenueByDate[date]);
+    const sortedDates = Object.keys(revenueByDate).sort(
+      (a, b) => new Date(a) - new Date(b)
+    );
+    const revenueValues = sortedDates.map((date) => revenueByDate[date]);
 
     setChartData({
       labels: sortedDates,
       datasets: [
         {
-          label: 'Daily Revenue',
+          label: "Daily Revenue",
           data: revenueValues,
-          borderColor: 'rgb(75, 192, 192)',
-          backgroundColor: 'rgba(75, 192, 192, 0.5)',
+          borderColor: "#4f46e5",
+          backgroundColor: "rgba(79, 70, 229, 0.2)",
           tension: 0.3,
+          pointBackgroundColor: "#4f46e5",
         },
       ],
     });
   };
 
-  // --- Stats ---
+  // Stats
   const totalRevenue = orders.reduce(
     (sum, order) => sum + Number(order.total || 0),
     0
@@ -736,56 +1021,65 @@ function Dashboard() {
     <div className="flex">
       <Toaster position="top-right" />
 
-      {/* Sidebar Fixed */}
+      {/* Sidebar */}
       <div className="w-64 h-screen fixed top-0 left-0 bg-white shadow-lg">
         <Sidebar />
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 p-6 bg-gray-100 min-h-screen overflow-y-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">
-          Admin Dashboard
-        </h1>
+      <div className="flex-1 ml-64 p-8 bg-gray-50 min-h-screen overflow-y-auto">
+        {/* Header */}
+        <div className="mb-6">
+          <h1 className="text-4xl font-extrabold text-gray-800">
+            📊 Admin Dashboard
+          </h1>
+          <p className="text-gray-500 mt-1">
+            Overview of users, orders, and revenue insights
+          </p>
+        </div>
 
-        {/* Stats */}
+        {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <StatCard
             title="Total Revenue"
             value={`₹${totalRevenue.toFixed(2)}`}
-            color="green"
+            icon={<DollarSign className="text-green-600" size={28} />}
           />
-          <StatCard title="Total Orders" value={totalOrders} color="blue" />
-          <StatCard title="Total Users" value={totalUsers} color="purple" />
+          <StatCard
+            title="Total Orders"
+            value={totalOrders}
+            icon={<ShoppingCart className="text-blue-600" size={28} />}
+          />
+          <StatCard
+            title="Total Users"
+            value={totalUsers}
+            icon={<Users className="text-purple-600" size={28} />}
+          />
         </div>
 
         {/* Revenue Chart */}
         <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Revenue Overview</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+            Revenue Overview
+          </h2>
           <div className="h-80">
-            <Line 
-              data={chartData} 
+            <Line
+              data={chartData}
               options={{
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                  legend: {
-                    position: 'top',
-                  },
-                  title: {
-                    display: true,
-                    text: 'Daily Revenue Trend',
-                  },
+                  legend: { position: "top" },
+                  title: { display: true, text: "Daily Revenue Trend" },
                 },
                 scales: {
                   y: {
                     beginAtZero: true,
                     ticks: {
-                      callback: function(value) {
-                        return '₹' + value;
-                      }
-                    }
-                  }
-                }
+                      callback: (value) => "₹" + value,
+                    },
+                  },
+                },
               }}
             />
           </div>
@@ -795,7 +1089,6 @@ function Dashboard() {
         <UsersTable users={users} />
         <OrdersTable orders={orders} />
 
-        {/* Footer */}
         <Footer />
       </div>
     </div>
@@ -803,21 +1096,22 @@ function Dashboard() {
 }
 
 // --- Reusable Components ---
-const StatCard = ({ title, value, color }) => (
-  <div
-    className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all text-center`}
-  >
-    <h3 className="text-lg font-semibold text-gray-600">{title}</h3>
-    <p className={`text-2xl font-bold text-${color}-600`}>{value}</p>
+const StatCard = ({ title, value, icon }) => (
+  <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-between">
+    <div>
+      <h3 className="text-lg font-semibold text-gray-600">{title}</h3>
+      <p className="text-2xl font-bold text-gray-900">{value}</p>
+    </div>
+    <div className="p-3 bg-gray-100 rounded-full">{icon}</div>
   </div>
 );
 
 const UsersTable = ({ users }) => (
-  <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
+  <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-xl transition-all">
     <h2 className="text-2xl font-semibold mb-4 text-gray-700">Users</h2>
     <div className="overflow-x-auto">
-      <table className="min-w-full border rounded-lg overflow-hidden">
-        <thead className="bg-gray-200">
+      <table className="min-w-full border rounded-lg overflow-hidden text-sm">
+        <thead className="bg-gray-100">
           <tr>
             <th className="px-4 py-2 border">ID</th>
             <th className="px-4 py-2 border">Name</th>
@@ -827,12 +1121,15 @@ const UsersTable = ({ users }) => (
         </thead>
         <tbody>
           {users.map((u) => (
-            <tr key={u.id} className="hover:bg-gray-100 transition-all">
+            <tr
+              key={u.id}
+              className="hover:bg-gray-50 transition-all text-gray-700"
+            >
               <td className="px-4 py-2 border">{u.id}</td>
-              <td className="px-4 py-2 border">{u.name}</td>
+              <td className="px-4 py-2 border font-medium">{u.name}</td>
               <td className="px-4 py-2 border">{u.email}</td>
-              <td className="px-4 py-2 border">
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">
+              <td className="px-4 py-2 border text-center">
+                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
                   {u.orders?.length || 0}
                 </span>
               </td>
@@ -845,11 +1142,11 @@ const UsersTable = ({ users }) => (
 );
 
 const OrdersTable = ({ orders }) => (
-  <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-2xl transition-all">
+  <div className="bg-white p-6 rounded-2xl shadow-lg mb-8 hover:shadow-xl transition-all">
     <h2 className="text-2xl font-semibold mb-4 text-gray-700">Orders</h2>
     <div className="overflow-x-auto">
-      <table className="min-w-full border rounded-lg overflow-hidden">
-        <thead className="bg-gray-200">
+      <table className="min-w-full border rounded-lg overflow-hidden text-sm">
+        <thead className="bg-gray-100">
           <tr>
             <th className="px-4 py-2 border">Order ID</th>
             <th className="px-4 py-2 border">User ID</th>
@@ -859,14 +1156,17 @@ const OrdersTable = ({ orders }) => (
         </thead>
         <tbody>
           {orders.map((o) => (
-            <tr key={o.id} className="hover:bg-gray-100 transition-all">
+            <tr
+              key={o.id}
+              className="hover:bg-gray-50 transition-all text-gray-700"
+            >
               <td className="px-4 py-2 border">{o.id}</td>
               <td className="px-4 py-2 border">{o.userId}</td>
-              <td className="px-4 py-2 border">
+              <td className="px-4 py-2 border font-medium text-green-600">
                 ₹{Number(o.total || 0).toFixed(2)}
               </td>
-              <td className="px-4 py-2 border">
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">
+              <td className="px-4 py-2 border text-center">
+                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
                   {(o.items || []).length}
                 </span>
               </td>
