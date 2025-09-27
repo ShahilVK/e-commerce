@@ -9,77 +9,7 @@
       "isAuthenticated": true,
       "wishlist": [],
       "cart": [],
-      "orders": [
-        {
-          "id": "mg0df9hstaqgj0hcqz",
-          "date": "2025-09-26T04:57:54.640Z",
-          "items": [
-            {
-              "id": "14",
-              "name": "Canon EOS",
-              "price": "£99.99",
-              "image": "https://i.pinimg.com/1200x/c4/93/2b/c4932b02218c7dffc95de66aa3e0c33d.jpg",
-              "category": "Camera",
-              "quantity": 2
-            }
-          ],
-          "total": "199.98",
-          "billing": {
-            "name": "shamillvk",
-            "email": "shamilvk@gmail.com",
-            "phone": "08714059964",
-            "address": "vattahouse"
-          },
-          "paymentMethod": "card",
-          "status": "Processing"
-        },
-        {
-          "id": "mg1rwi8511ba8w29fn",
-          "date": "2025-09-27T04:30:59.909Z",
-          "items": [
-            {
-              "id": "2",
-              "name": "Canon 5D Mark",
-              "price": "£89.99",
-              "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
-              "category": "Camera",
-              "quantity": 1
-            }
-          ],
-          "total": "89.99",
-          "billing": {
-            "name": "Shahil",
-            "email": "shahilvk99@gmail.com",
-            "phone": "08714059965",
-            "address": "vattahouse"
-          },
-          "paymentMethod": "card",
-          "status": "Processing"
-        },
-        {
-          "id": "mg1s7mz1xe7xksfhi3m",
-          "date": "2025-09-27T04:39:39.277Z",
-          "items": [
-            {
-              "id": "3",
-              "name": "Wireless Earbuds",
-              "price": "£89.99",
-              "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
-              "category": "Earbuds",
-              "quantity": 1
-            }
-          ],
-          "total": "89.99",
-          "billing": {
-            "name": "Shahil",
-            "email": "shahilvk11@gmail.com",
-            "phone": "1234567890",
-            "address": "vattahouse"
-          },
-          "paymentMethod": "card",
-          "status": "Processing"
-        }
-      ],
+      "orders": [],
       "isBlocked": false
     },
     {
@@ -106,60 +36,6 @@
       "wishlist": [],
       "shippingAddress": [],
       "orders": [
-        {
-          "id": "2",
-          "name": "Canon 5D Mark",
-          "price": "£249.99",
-          "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
-          "category": "Camera",
-          "quantity": 1,
-          "totalPrice": "249.99"
-        },
-        {
-          "id": "3",
-          "name": "Wireless Earbuds",
-          "price": "£89.99",
-          "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
-          "category": "Earbuds",
-          "quantity": 1,
-          "totalPrice": "89.99"
-        },
-        {
-          "id": "2",
-          "name": "Canon 5D Mark",
-          "price": "£249.99",
-          "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
-          "category": "Camera",
-          "quantity": 1,
-          "totalPrice": "249.99"
-        },
-        {
-          "id": "1",
-          "name": "Beats Studio Wireless",
-          "price": "£499.99",
-          "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
-          "category": "Headphones",
-          "quantity": 1,
-          "totalPrice": "499.99"
-        },
-        {
-          "id": "1",
-          "name": "Beats Studio Wireless",
-          "price": "£499.99",
-          "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
-          "category": "Headphones",
-          "quantity": 1,
-          "totalPrice": "499.99"
-        },
-        {
-          "id": "2",
-          "name": "Canon 5D Mark",
-          "price": "£249.99",
-          "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
-          "category": "Camera",
-          "quantity": 1,
-          "totalPrice": "249.99"
-        },
         {
           "id": "mfzjc4t7z4wt5nfzrrl",
           "date": "2025-09-25T14:55:40.123Z",
@@ -503,7 +379,7 @@
             "address": "vattahouse"
           },
           "paymentMethod": "card",
-          "status": "Processing"
+          "status": "Delivered"
         }
       ]
     },
