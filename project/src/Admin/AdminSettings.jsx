@@ -4,16 +4,13 @@ import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import api from "../Api/Axios_Instance";
 import { 
     Home, Box, ShoppingCart, Users, Settings, LogOut, 
     User, Sun, Lock, Eye, EyeOff
 } from "lucide-react";
 
-// --- Self-contained API and Helper Components ---
 
-const api = axios.create({
-  baseURL: "http://localhost:3001",
-});
 
 const Footer = () => (
     <footer className="bg-white dark:bg-gray-800 p-4 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 mt-auto">

@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from "react";
 import { Star, ShoppingCart, Heart } from "lucide-react";
-import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import api from "../Api/Axios_Instance";
 
 const TopProducts = () => {
   const [products, setProducts] = useState([]);
@@ -11,8 +12,7 @@ const TopProducts = () => {
 
   // Fetch products from db.json
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/products")
+    api.get("/products")
       .then((res) => {
         // take only first 8 products for better grid display
         setProducts(res.data.slice(0, 8));

@@ -1,103 +1,4 @@
 
-
-
-// import React, { createContext, useState, useEffect, useContext } from "react";
-// import api from "../Api/Axios_Instance";
-// import toast from "react-hot-toast";
-// import { useNavigate } from "react-router-dom";
-
-// export const AuthContext = createContext();
-
-// // Custom hook for easy access
-// export const useAuth = () => useContext(AuthContext);
-
-// const AuthProvider = ({ children }) => {
-//   const [user, setUser] = useState(null);
-//   const navigate = useNavigate();
-
-//   // Restore user on page refresh
-//   useEffect(() => {
-//     const storedUser = localStorage.getItem("user");
-//     if (storedUser) {
-//       setUser(JSON.parse(storedUser));
-//     }
-//   }, []);
-
-//   const signup = async (newUser) => {
-//     try {
-//       const response = await api.get(`/users?email=${newUser.email}`);
-//       if (response.data.length > 0) {
-//         toast.error("Email id Already Exists");
-//       } else {
-//         const userData = {
-//           ...newUser,
-//           role: "user",
-//           isAuthenticated: true,
-//           cart: [],
-//           wishlist: [],
-//           shippingAddress: [],
-//           orders: [],
-//         };
-
-//         await api.post("/users", userData);
-
-//         setUser(userData);
-//         toast.success("Signup Successful");
-//         navigate("/login");
-//       }
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   const login = async (email, password) => {
-//     try {
-//       const response = await api.get(`/users?email=${email}&&password=${password}`);
-
-//       if (response.data.length === 0) {
-//         toast.error("The Username or Password doesn't Match");
-//       } else {
-//         const loggedInUser = response.data[0];
-//         setUser(loggedInUser);
-
-//         // Save user to localStorage
-//         localStorage.setItem("user", JSON.stringify(loggedInUser));
-
-//         // Redirect based on role
-//         if (loggedInUser.role === "admin") {
-//           navigate("/dashboard");
-//           toast.success("Admin Logged In Successfully");
-//         } else {
-//           navigate("/");
-//           toast.success("User Logged In Successfully");
-//         }
-//       }
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   const logout = () => {
-//     setUser(null);
-//     localStorage.removeItem("user");
-//     navigate("/login");
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ signup, login, logout, user }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export default AuthProvider;
-
-
-
-
-
-
-
 // import React, { createContext, useState, useEffect, useContext } from "react";
 // import api from "../Api/Axios_Instance";
 // import toast from "react-hot-toast";
@@ -234,11 +135,8 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import api from "../Api/Axios_Instance";
 
-// --- Self-contained API Instance ---
-const api = axios.create({
-  baseURL: "http://localhost:3001",
-});
 
 export const AuthContext = createContext(null);
 

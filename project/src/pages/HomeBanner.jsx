@@ -14,18 +14,19 @@ const slides = [
     },
     {
         id: 2,
+        backgroundImage: "url('https://wallpapers.com/images/hd/hd-camera-on-dried-leaves-f1ft20hqpytgmz06.jpg')",
+        title: <>Capture Every Moment, <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-400">Perfectly.</span></>,
+        description: "From professional DSLRs to compact point-and-shoots, find the perfect camera to preserve your memories in stunning detail.",
+        
+    },
+    {
+        id: 3,
         backgroundImage: "url('https://images.unsplash.com/photo-1544117519-31a4b719223d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
         title: <>Stay Connected, <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">Stay Ahead.</span></>,
         description: "Explore our latest collection of smartwatches with cutting-edge features to track your fitness and manage your day.",
         
     },
-    {
-        id: 3,
-        backgroundImage: "url('https://wallpapers.com/images/hd/hd-camera-on-dried-leaves-f1ft20hqpytgmz06.jpg')",
-        title: <>Capture Every Moment, <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-400">Perfectly.</span></>,
-        description: "From professional DSLRs to compact point-and-shoots, find the perfect camera to preserve your memories in stunning detail.",
-        
-    }
+    
 ];
 
 const HomeBannerWithBg = () => {

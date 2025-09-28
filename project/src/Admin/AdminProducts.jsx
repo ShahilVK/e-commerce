@@ -3,16 +3,11 @@ import React, { useEffect, useState, useMemo } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import api from "../Api/Axios_Instance";
 import { 
     Trash2, Edit2, Search, X, Plus, Package, ChevronLeft, ChevronRight, 
     Home, Box, ShoppingCart, Users, Settings, LogOut 
 } from "lucide-react";
-
-// --- Self-contained API and Helper Components ---
-
-const api = axios.create({
-  baseURL: "http://localhost:3001",
-});
 
 const Modal = ({ children, isOpen, onClose }) => {
     if (!isOpen) return null;

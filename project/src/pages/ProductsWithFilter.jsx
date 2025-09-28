@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../Api/Axios_Instance";
 
 const ProductCategories = () => {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/products")
+    api.get("/products")
       .then((res) => {
         const categoryMap = {};
         res.data.forEach((p) => {
