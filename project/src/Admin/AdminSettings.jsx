@@ -1,10 +1,12 @@
+
+
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { BrowserRouter as Router, Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { 
     Home, Box, ShoppingCart, Users, Settings, LogOut, 
-    User, Bell, Sun, Moon, Lock, Eye, EyeOff
+    User, Sun, Lock, Eye, EyeOff
 } from "lucide-react";
 
 // --- Self-contained API and Helper Components ---
@@ -19,15 +21,15 @@ const Footer = () => (
     </footer>
 );
 
-const Sidebar = () => {
+const Sidebar = ({ isCollapsed, onMouseEnter, onMouseLeave }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const menuItems = [
-      { name: "Dashboard", icon: <Home size={18} />, path: "/dashboard" },
-      { name: "Products", icon: <Box size={18} />, path: "/adminproducts" },
-      { name: "Orders", icon: <ShoppingCart size={18} />, path: "/adminorders" },
-      { name: "Users", icon: <Users size={18} />, path: "/adminusers" },
-      { name: "Settings", icon: <Settings size={18} />, path: "/adminsettings" },
+      { name: "Dashboard", icon: <Home size={20} />, path: "/dashboard" },
+      { name: "Products", icon: <Box size={20} />, path: "/adminproducts" },
+      { name: "Orders", icon: <ShoppingCart size={20} />, path: "/adminorders" },
+      { name: "Users", icon: <Users size={20} />, path: "/adminusers" },
+      { name: "Settings", icon: <Settings size={20} />, path: "/adminsettings" },
     ];
     const handleLogout = () => {
       localStorage.removeItem("user");
@@ -35,33 +37,47 @@ const Sidebar = () => {
       toast.success("Logged out successfully.");
     };
     return (
-      <div className="w-64 h-screen bg-gray-900 text-white flex flex-col flex-shrink-0 sticky top-0">
-        <div className="p-6 text-xl font-bold border-b border-gray-700">Admin Panel</div>
-        <nav className="flex-1 mt-4">
-          {menuItems.map((item) => (
-            <Link key={item.name} to={item.path} className={`flex items-center px-6 py-3 transition-colors ${location.pathname.includes(item.path) ? "bg-gray-800" : "hover:bg-gray-800"}`}>
-              <span className="mr-3">{item.icon}</span>
-              <span>{item.name}</span>
-            </Link>
-          ))}
-        </nav>
-        <div className="p-6 border-t border-gray-700">
-          <button onClick={handleLogout} className="flex items-center w-full text-left hover:bg-gray-800 px-4 py-2 rounded">
-            <LogOut size={18} className="mr-3" /> Logout
-          </button>
-        </div>
+        <div 
+            className={`bg-gray-900 text-white flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+        >
+            <div className={`p-6 text-xl font-bold border-b border-gray-700 flex items-center gap-2 ${isCollapsed ? 'justify-center' : ''}`}>
+                <Box className="text-indigo-400" />
+                {!isCollapsed && <span>Admin</span>}
+            </div>
+            <nav className="flex-1 mt-4 space-y-2">
+              {menuItems.map((item) => (
+                <Link 
+                    key={item.name} 
+                    to={item.path} 
+                    className={`flex items-center py-3 transition-colors mx-3 px-3 rounded-lg ${isCollapsed ? 'justify-center' : ''} ${location.pathname.startsWith(item.path) ? "bg-gray-800" : "hover:bg-gray-700/50"}`}
+                    title={item.name}
+                >
+                  <span className={!isCollapsed ? 'mr-3' : ''}>{item.icon}</span>
+                  {!isCollapsed && <span className="text-sm font-medium">{item.name}</span>}
+                </Link>
+              ))}
+            </nav>
+            <div className="p-4 border-t border-gray-700">
+              <button onClick={handleLogout} className={`flex items-center w-full text-left hover:bg-gray-800 p-3 rounded-lg transition-colors ${isCollapsed ? 'justify-center' : ''}`} title="Logout">
+                <LogOut size={20} className={!isCollapsed ? 'mr-3' : ''} /> 
+                {!isCollapsed && <span className="text-sm font-medium">Logout</span>}
+              </button>
+            </div>
       </div>
     );
 };
 
 // --- Main AdminSettings Component ---
- export function AdminSettings() {
+export function AdminSettings() {
   const adminId = "pdwh"; // In a real app, this would come from auth context
 
   const [adminUser, setAdminUser] = useState({ name: '', email: '' });
   const [passwordData, setPasswordData] = useState({ current: '', new: '', confirm: '' });
   const [showCurrentPass, setShowCurrentPass] = useState(false);
   const [showNewPass, setShowNewPass] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   // Appearance State
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
@@ -132,7 +148,11 @@ const Sidebar = () => {
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
       <Toaster position="top-right" />
-      <Sidebar />
+      <Sidebar 
+          isCollapsed={isSidebarCollapsed} 
+          onMouseEnter={() => setIsSidebarCollapsed(false)}
+          onMouseLeave={() => setIsSidebarCollapsed(true)}
+      />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <main className="flex-1 overflow-x-hidden overflow-y-auto p-6">
@@ -217,11 +237,5 @@ const Sidebar = () => {
   );
 }
 
-// This wrapper is provided so the component can be rendered in isolation.
-const App = () => (
-    <Router>
-        <AdminSettings />
-    </Router>
-);
+export default AdminSettings;
 
-export default App;
