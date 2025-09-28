@@ -1,9 +1,9 @@
 
-
 import React, { useEffect, useState } from "react";
-import { Star, Plus } from "lucide-react";
+import { Star, ShoppingCart, Heart } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const TopProducts = () => {
   const [products, setProducts] = useState([]);
@@ -14,74 +14,94 @@ const TopProducts = () => {
     axios
       .get("http://localhost:3001/products")
       .then((res) => {
-        // take only first 5 products
-        setProducts(res.data.slice(0, 5));
+        // take only first 8 products for better grid display
+        setProducts(res.data.slice(0, 8));
       })
       .catch((err) => {
         console.error("Error fetching products:", err);
       });
   }, []);
+  
+  const handleActionClick = (e, message) => {
+      e.stopPropagation(); // Prevent card's navigation
+      toast.success(message);
+      // In a real app, you'd also update the cart/wishlist state here.
+  };
 
   return (
-    <section className="bg-white py-12 w-full">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="bg-teal-50/50 py-20 w-full">
+      <Toaster position="top-right" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
-        <h2 className="text-2xl font-bold text-gray-800 mb-8 border-l-4 border-red-500 pl-3">
-          Top Products
-        </h2>
+        <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-tighter text-gray-900 sm:text-4xl">
+                Featured Products
+            </h2>
+            <p className="mt-4 text-lg leading-8 text-gray-600">
+                Explore our handpicked selection of top-rated electronics.
+            </p>
+        </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {products.map((product) => (
             <div
               key={product.id}
-              className="group border rounded-lg p-4 flex flex-col items-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              onClick={() => navigate('/product')}
+              className="group cursor-pointer relative flex flex-col bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
             >
               {/* Product Image */}
-              <div className="overflow-hidden w-full flex justify-center">
+              <div className="aspect-square w-full overflow-hidden bg-white p-6">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-32 object-contain mb-4 transition-transform duration-300 group-hover:scale-110"
+                  className="h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-
-              {/* Product Name */}
-              <h3 className="text-gray-800 font-semibold group-hover:text-red-500 transition">
-                {product.name}
-              </h3>
-
-              {/* Price */}
-              <div className="flex items-center gap-2 mt-2">
-                <span className="text-red-600 font-bold text-lg">
-                  {product.price}
-                </span>
+              
+              {/* Action buttons on hover */}
+              <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <button onClick={(e) => handleActionClick(e, `${product.name} added to cart!`)} className="p-2.5 bg-white rounded-full shadow-lg hover:bg-teal-500 hover:text-white text-gray-700 transition-all transform hover:scale-110">
+                      <ShoppingCart size={18} />
+                  </button>
+                  <button onClick={(e) => handleActionClick(e, `${product.name} added to wishlist!`)} className="p-2.5 bg-white rounded-full shadow-lg hover:bg-red-500 hover:text-white text-gray-700 transition-all transform hover:scale-110">
+                      <Heart size={18} />
+                  </button>
               </div>
 
-              {/* Category */}
-              <p className="text-sm text-gray-500 mt-1">{product.category}</p>
+              <div className="p-4 border-t border-gray-100 flex flex-col flex-grow">
+                 {/* Category */}
+                 <div className="mb-2">
+                    <div className="text-xs font-medium text-teal-800 bg-teal-100 px-2.5 py-1 rounded-full inline-block">{product.category}</div>
+                 </div>
 
-              {/* Fake Rating */}
-              <div className="flex mt-2">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-4 h-4 ${
-                      i < 4
-                        ? "text-yellow-400 fill-yellow-400"
-                        : "text-gray-300"
-                    }`}
-                  />
-                ))}
+                {/* Product Name */}
+                <h3 className="text-base font-semibold text-gray-800 transition truncate flex-grow group-hover:text-teal-600">
+                    {product.name}
+                </h3>
+
+                {/* Rating */}
+                <div className="flex items-center mt-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < 4
+                          ? "text-amber-400 fill-amber-400"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                  <span className="ml-2 text-xs text-gray-500">(24 reviews)</span>
+                </div>
+
+                {/* Price */}
+                <div className="mt-4">
+                    <p className="text-xl font-bold text-gray-900">
+                        {product.price}
+                    </p>
+                </div>
               </div>
-
-              {/* Add Button -> Navigate to Product Page */}
-              <button
-                onClick={() => navigate("/product")}
-                className="mt-3 p-2 bg-red-500 rounded-full hover:bg-red-600 transition transform group-hover:scale-110"
-              >
-                <Plus className="text-white w-5 h-5" />
-              </button>
             </div>
           ))}
         </div>
@@ -91,3 +111,4 @@ const TopProducts = () => {
 };
 
 export default TopProducts;
+

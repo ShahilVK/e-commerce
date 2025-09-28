@@ -113,8 +113,10 @@ function Home() {
         viewport={{ once: true }}
         className="w-full"
       >
-        {/* <FeaturesSection /> */}
-         <ProductsWithFilter />
+        
+        
+         {/* <ProductsWithFilter /> */}
+         <TopProducts />
       </motion.div>
 
       {/* Top Products */}
@@ -139,7 +141,7 @@ function Home() {
         className="w-full"
       >
         {/* <ProductsWithFilter /> */}
-         <TopProducts />
+        <ProductsWithFilter />
       </motion.div>
 
       {/* Footer */}
