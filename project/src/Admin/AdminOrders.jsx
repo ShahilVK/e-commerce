@@ -169,7 +169,7 @@ const Sidebar = () => {
       { name: "Products", icon: <Box size={18} />, path: "/adminproducts" },
       { name: "Orders", icon: <ShoppingCart size={18} />, path: "/adminorders" },
       { name: "Users", icon: <Users size={18} />, path: "/adminusers" },
-      { name: "Settings", icon: <Settings size={18} />, path: "/dashboard/settings" },
+      { name: "Settings", icon: <Settings size={18} />, path: "/adminsettings" },
     ];
     const handleLogout = () => {
       localStorage.removeItem("user");

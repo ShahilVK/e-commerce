@@ -105,6 +105,7 @@ import AdminProducts from "./Admin/AdminProducts";
 import AdminOrders from "./Admin/AdminOrders";
 import AdminUsers from "./Admin/Adminusers";
 import api from "./Api/Axios_Instance";
+import { AdminSettings } from "./Admin/AdminSettings";
 
 // --- Route Guards ---
 
@@ -161,6 +162,7 @@ function App() {
         <Route path="/adminproducts" element={<AdminRoute><AdminProducts /></AdminRoute>} />
         <Route path="/adminorders" element={<AdminRoute><AdminOrders /></AdminRoute>} />
         <Route path="/adminusers" element={<AdminRoute><AdminUsers /></AdminRoute>} />
+        <Route path="/adminsettings" element={<AdminRoute><AdminSettings /></AdminRoute>} />
 
         
         {/* Fallback */}
