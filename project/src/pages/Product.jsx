@@ -95,7 +95,7 @@ function Product() {
               className="relative bg-cover bg-center text-white py-16 sm:py-20"
               style={{
                 backgroundImage:
-                  "url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop')",
+                  "url('https://static.vecteezy.com/system/resources/previews/008/065/616/large_2x/black-headphones-on-dark-wooden-background-in-ear-headphones-for-playing-games-and-listening-to-music-tracks-vintage-style-free-photo.jpg')",
               }}
             >
               <div className="absolute inset-0 bg-black/60"></div>
