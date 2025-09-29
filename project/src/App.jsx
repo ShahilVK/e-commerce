@@ -148,6 +148,7 @@ function App() {
         <Route path="/payment" element={<ProtectedRoute><Payment /></ProtectedRoute>} />
         <Route path="/ordersuccess" element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
         <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} /> {/* <-- 2. ADD THE NEW ROUTE */}
+         <Route path="/product/:id" element={<Product />} />
         
 
         {/* --- Admin Dashboard Route --- */}

@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState, useContext } from "react";
 import { Star, ShoppingCart, Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +9,9 @@ import { AuthContext } from "../context/AuthContext";
 const TopProducts = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext); // ✅ Check logged-in user
+  const { user } = useContext(AuthContext);
 
-  // Fetch products from db.json
+  // ✅ Fetch products from db.json
   useEffect(() => {
     api
       .get("/products")
@@ -24,12 +23,10 @@ const TopProducts = () => {
       });
   }, []);
 
-  // ✅ Add product to cart
+  // ✅ Add to Cart
   const handleAddToCart = async (e, product) => {
     e.stopPropagation();
-    if (!user) {
-      return navigate("/login");
-    }
+    if (!user) return navigate("/login");
 
     try {
       const res = await api.get(`/users/${user.id}`);
@@ -48,28 +45,24 @@ const TopProducts = () => {
 
       await api.patch(`/users/${user.id}`, { cart });
       toast.success(`${product.name} added to cart!`);
-      window.dispatchEvent(new CustomEvent("cartUpdated")); // ✅ refresh cart
+      window.dispatchEvent(new CustomEvent("cartUpdated"));
     } catch (err) {
       console.error("Error adding to cart:", err);
       toast.error("Failed to add item to cart.");
     }
   };
 
-  // ✅ Add product to wishlist
+  // ✅ Add to Wishlist
   const handleAddToWishlist = async (e, product) => {
     e.stopPropagation();
-    if (!user) {
-      return navigate("/login");
-    }
+    if (!user) return navigate("/login");
 
     try {
       const res = await api.get(`/users/${user.id}`);
       let wishlist = res.data.wishlist || [];
 
       const exists = wishlist.some((item) => item.id === product.id);
-      if (!exists) {
-        wishlist.push(product);
-      }
+      if (!exists) wishlist.push(product);
 
       await api.patch(`/users/${user.id}`, { wishlist });
       toast.success(`${product.name} added to wishlist!`);
@@ -98,11 +91,13 @@ const TopProducts = () => {
           {products.map((product) => (
             <div
               key={product.id}
-              onClick={() => navigate(`/product/${product.id}`)}
-              className="group cursor-pointer relative flex flex-col bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+              className="group relative flex flex-col bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
             >
-              {/* Product Image */}
-              <div className="aspect-square w-full overflow-hidden bg-white p-6">
+              {/* ✅ Product Image Click → Navigate */}
+              <div
+                className="aspect-square w-full overflow-hidden bg-white p-6 cursor-pointer"
+                onClick={() => navigate(`/product/${product.id}`)}
+              >
                 <img
                   src={product.image}
                   alt={product.name}
@@ -147,7 +142,9 @@ const TopProducts = () => {
                       }`}
                     />
                   ))}
-                  <span className="ml-2 text-xs text-gray-500">(24 reviews)</span>
+                  <span className="ml-2 text-xs text-gray-500">
+                    (24 reviews)
+                  </span>
                 </div>
 
                 <div className="mt-4">
