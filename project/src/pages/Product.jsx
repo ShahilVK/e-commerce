@@ -235,7 +235,7 @@ function Product() {
                         </p>
                         <button
                           onClick={() => handleAddToCart(product)}
-                          className="w-full mt-4 bg-gray-800 text-white py-2 rounded-md font-semibold hover:bg-red-500 transition-colors flex items-center justify-center gap-2"
+                          className="w-full mt-4 bg-amber-600 text-white py-2 rounded-md font-semibold hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
                         >
                           <ShoppingCart size={18} /> Add to Cart
                         </button>

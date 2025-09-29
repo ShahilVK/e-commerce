@@ -1,85 +1,5 @@
 
 
-// import React from "react";
-// import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
-// import Home from "./pages/Home";
-// import Login from "./pages/Login";
-// import Register from "./pages/Register";
-// import Product from "./pages/Product";
-// import Wishlist from "./pages/Wishlist";
-// import Cart from "./pages/Cart";
-// import Profile from "./pages/Profile";
-// import Payment from "./pages/Payment";
-// import OrderSuccess from "./pages/OrderSuccess";
-// import About from "./pages/About";
-// import Contact from "./pages/Contact";
-// import Footer from "./components/Footer";
-// import Dashboard from "./Admin/Dashboard";
-
-// import AuthProvider, { useAuth } from "./context/AuthContext";
-// import { Toaster } from "react-hot-toast";
-
-
-// // Admin Route Guard
-// const AdminRoute = ({ children }) => {
-//   const { user } = useAuth();
-//   if (!user || user.role !== "admin") {
-//     return <Navigate to="/" />;
-//   }
-//   return children;
-// };
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Toaster position="top-right" />
-      
-//       <AuthProvider>
-//         <Routes>
-//           {/* Public Routes */}
-//           <Route path="/" element={<Home />} />
-//           <Route path="/login" element={<Login />} />
-//           <Route path="/register" element={<Register />} />
-//           <Route path="/product" element={<Product />} />
-//           <Route path="/about" element={<About />} />
-//           <Route path="/contact" element={<Contact />} />
-
-//           {/* Auth Protected Routes */}
-//           <Route path="/wishlist" element={<Wishlist />} />
-//           <Route path="/cart" element={<Cart />} />
-//           <Route path="/profile" element={<Profile />} />
-//           <Route path="/payment" element={<Payment />} />
-//           <Route path="/ordersuccess" element={<OrderSuccess />} />
-
-//           {/* Admin Dashboard Route */}
-//           <Route
-//             path="/dashboard"
-//             element={
-//               <AdminRoute>
-//                 <Dashboard />
-//               </AdminRoute>
-//             }
-//           />
-          
-       
-
-//           {/* Fallback */}
-//           <Route path="*" element={<Navigate to="/" />} />
-//         </Routes>
-//         {/* <Footer /> */}
-//       </AuthProvider>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
-
-
-
-
-
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -104,7 +24,6 @@ import { Toaster } from "react-hot-toast";
 import AdminProducts from "./Admin/AdminProducts";
 import AdminOrders from "./Admin/AdminOrders";
 import AdminUsers from "./Admin/Adminusers";
-import api from "./Api/Axios_Instance";
 import { AdminSettings } from "./Admin/AdminSettings";
 
 // --- Route Guards ---
@@ -128,8 +47,7 @@ const AdminRoute = ({ children }) => {
 
 function App() {
   return (
-    // The <BrowserRouter> and providers are removed from this file.
-    // They now live in main.jsx.
+   
     <>
       <Toaster position="top-right" />
       <Routes>
@@ -152,14 +70,7 @@ function App() {
         
 
         {/* --- Admin Dashboard Route --- */}
-        <Route
-          path="/dashboard/*"
-          element={
-            <AdminRoute>
-              <Dashboard />
-            </AdminRoute>
-          }
-        />
+        <Route path="/dashboard/*" element={ <AdminRoute> <Dashboard /> </AdminRoute> } />
         <Route path="/adminproducts" element={<AdminRoute><AdminProducts /></AdminRoute>} />
         <Route path="/adminorders" element={<AdminRoute><AdminOrders /></AdminRoute>} />
         <Route path="/adminusers" element={<AdminRoute><AdminUsers /></AdminRoute>} />

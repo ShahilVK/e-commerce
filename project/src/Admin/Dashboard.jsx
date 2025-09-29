@@ -5,20 +5,18 @@ import toast, { Toaster } from "react-hot-toast";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, Filler } from 'chart.js';
 import { Line, Pie } from 'react-chartjs-2';
 import { DollarSign, ShoppingCart, Users, Package, Search, Sun, Moon, X, Home, Box, Settings, LogOut, FileDown, Edit, UserX, UserCheck, Trash2, ChevronLeft } from 'lucide-react';
-import axios from 'axios';
+import api from "../Api/Axios_Instance";
 
-// --- Helper Components & API (Included to make the file self-contained) ---
+
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, Filler);
 
-const api = axios.create({
-  baseURL: "http://localhost:3001",
-});
+
 
 const AuthContext = createContext(null);
 
 const Footer = () => (
-    <footer className="bg-white dark:bg-gray-800 p-4 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 mt-auto">
+    <footer className="bg-white dark:bg-gray-800 p-4 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 mt-auto ">
       © {new Date().getFullYear()} TekTrov. All rights reserved.
     </footer>
 );

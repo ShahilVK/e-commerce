@@ -4,7 +4,7 @@
       "id": "pdwh",
       "name": "Shahil VK",
       "email": "shahilvk11@gmail.com",
-      "password": "shahil123",
+      "password": "11223344",
       "role": "admin",
       "isAuthenticated": true,
       "wishlist": [],
@@ -427,6 +427,30 @@
           },
           "paymentMethod": "card",
           "status": "Processing"
+        },
+        {
+          "id": "mg597y37xape2urj3t9",
+          "date": "2025-09-29T14:59:05.683Z",
+          "items": [
+            {
+              "id": "29",
+              "name": "Boat Rockerz 551",
+              "price": "₹99.99",
+              "image": "https://www.boat-lifestyle.com/cdn/shop/products/main2_b66dce6b-710d-49cb-9d1c-2bc8c9c0ab15_600x.png?v=1645698328",
+              "category": "Headphones",
+              "stock": 9,
+              "quantity": 1
+            }
+          ],
+          "total": "99.99",
+          "billing": {
+            "name": "Shahil VK",
+            "email": "shahilvk99@gmail.com",
+            "phone": "08714059965",
+            "address": "vattahouse"
+          },
+          "paymentMethod": "card",
+          "status": "Processing"
         }
       ],
       "isBlocked": false
@@ -537,7 +561,7 @@
       "price": "₹89.99",
       "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
       "category": "Camera",
-      "stock": 5
+      "stock": 2
     },
     {
       "id": "3",
@@ -751,9 +775,9 @@
       "id": "29",
       "name": "Boat Rockerz 551",
       "price": "₹99.99",
-      "image": "https://i.pinimg.com/736x/68/0b/b4/680bb42752ad9136262a7a7b8cd487fc.jpg",
+      "image": "https://www.boat-lifestyle.com/cdn/shop/products/main2_b66dce6b-710d-49cb-9d1c-2bc8c9c0ab15_600x.png?v=1645698328",
       "category": "Headphones",
-      "stock": 9
+      "stock": 8
     },
     {
       "id": "30",
