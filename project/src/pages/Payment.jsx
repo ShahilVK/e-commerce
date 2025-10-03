@@ -114,7 +114,7 @@ const Payment = () => {
             </div>
             <h3 className="text-2xl font-semibold border-b pb-2 text-gray-700">Payment Method</h3>
             <div className="flex flex-col gap-3">
-              {["card", "upi", "wallet"].map((method) => (
+              {["card", "upi", "Cash On Delivery"].map((method) => (
                 <label key={method} className="flex items-center gap-3 text-gray-700">
                   <input type="radio" value={method} checked={paymentMethod === method} onChange={(e) => setPaymentMethod(e.target.value)} className="accent-yellow-500"/>
                   {method === "card" ? "Credit / Debit Card" : method.charAt(0).toUpperCase() + method.slice(1)}

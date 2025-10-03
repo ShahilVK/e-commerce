@@ -113,7 +113,7 @@ const HomeBannerWithBg = () => {
                             Explore Products <ChevronRight size={20} />
                         </Link>
                         <Link
-                            to="/features"
+                            to="/home"
                             className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
                         >
                             View Features

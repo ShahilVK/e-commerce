@@ -429,20 +429,20 @@
           "status": "Processing"
         },
         {
-          "id": "mg597y37xape2urj3t9",
-          "date": "2025-09-29T14:59:05.683Z",
+          "id": "mg69355hsqq9j70arve",
+          "date": "2025-09-30T07:43:07.733Z",
           "items": [
             {
-              "id": "29",
-              "name": "Boat Rockerz 551",
-              "price": "₹99.99",
-              "image": "https://www.boat-lifestyle.com/cdn/shop/products/main2_b66dce6b-710d-49cb-9d1c-2bc8c9c0ab15_600x.png?v=1645698328",
-              "category": "Headphones",
-              "stock": 9,
+              "id": "2",
+              "name": "Canon 5D Mark",
+              "price": "₹89.99",
+              "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
+              "category": "Camera",
+              "stock": 8,
               "quantity": 1
             }
           ],
-          "total": "99.99",
+          "total": "89.99",
           "billing": {
             "name": "Shahil VK",
             "email": "shahilvk99@gmail.com",
@@ -450,7 +450,7 @@
             "address": "vattahouse"
           },
           "paymentMethod": "card",
-          "status": "Processing"
+          "status": "Delivered"
         }
       ],
       "isBlocked": false
@@ -553,7 +553,7 @@
       "price": "₹89.99",
       "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
       "category": "Headphones",
-      "stock": 0
+      "stock": 3
     },
     {
       "id": "2",
@@ -561,7 +561,7 @@
       "price": "₹89.99",
       "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
       "category": "Camera",
-      "stock": 2
+      "stock": 7
     },
     {
       "id": "3",
@@ -569,7 +569,7 @@
       "price": "₹89.99",
       "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
       "category": "Earbuds",
-      "stock": 10
+      "stock": 8
     },
     {
       "id": "4",
@@ -673,7 +673,7 @@
       "price": "₹99.99",
       "image": "https://i.pinimg.com/736x/fc/86/c9/fc86c9e9f0936eb3cb3240d9976c833a.jpg",
       "category": "Speakers",
-      "stock": 9
+      "stock": 2
     },
     {
       "id": "17",
@@ -753,7 +753,7 @@
       "price": "₹99.99",
       "image": "https://i.pinimg.com/736x/fc/62/43/fc624308739e1249dd021ad43e407560.jpg",
       "category": "Camera",
-      "stock": 9
+      "stock": 0
     },
     {
       "id": "27",
@@ -785,7 +785,7 @@
       "price": "₹99.99",
       "image": "https://i.pinimg.com/1200x/45/85/86/4585868bc1d6d606a787fcef511bd431.jpg",
       "category": "Speakers",
-      "stock": 9
+      "stock": 18
     },
     {
       "id": "31",

@@ -18,6 +18,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Dashboard from "./Admin/Dashboard";
 
+
 // Import Components and Hooks
 import { useAuth } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
@@ -25,6 +26,7 @@ import AdminProducts from "./Admin/AdminProducts";
 import AdminOrders from "./Admin/AdminOrders";
 import AdminUsers from "./Admin/Adminusers";
 import { AdminSettings } from "./Admin/AdminSettings";
+import TopProducts from "./pages/TopProducts";
 
 // --- Route Guards ---
 
@@ -58,6 +60,7 @@ function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+
 
         {/* --- Authenticated User Routes --- */}
         <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
