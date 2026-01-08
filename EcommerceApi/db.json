@@ -553,7 +553,7 @@
       "price": "₹89.99",
       "image": "https://media.sweetwater.com/api/i/q-82__h-750__ha-d7b5f966f7d6857a__hmac-655dc2e3738091e2fa3c77139ba442c45aca32f5/images/closeup/750-BeatsStu2WBk_detail2.jpg",
       "category": "Headphones",
-      "stock": 3
+      "stock": 7
     },
     {
       "id": "2",
@@ -561,7 +561,7 @@
       "price": "₹89.99",
       "image": "https://i.pinimg.com/1200x/6f/2d/21/6f2d21a9ab7cd9a1c20ec58163b8c0cd.jpg",
       "category": "Camera",
-      "stock": 7
+      "stock": 10
     },
     {
       "id": "3",
@@ -569,7 +569,7 @@
       "price": "₹89.99",
       "image": "https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/NI_CATALOG/IMAGES/CIW/2025/8/1/6825f5ff-e528-4b5a-85d9-72952babf307_LHSZ5CF0QK.png",
       "category": "Earbuds",
-      "stock": 8
+      "stock": 9
     },
     {
       "id": "4",
@@ -593,7 +593,7 @@
       "price": "₹129.99",
       "image": "https://i.pinimg.com/736x/ad/37/e4/ad37e43d5abc667c2688b1492eb1e1f4.jpg",
       "category": "Power Bank",
-      "stock": 10
+      "stock": 11
     },
     {
       "id": "7",
